@@ -1,0 +1,255 @@
+# HƯỚNG DẪN SỬ DỤNG LVTRANSLATOR
+## Ứng dụng dịch thuật tiếng Việt ↔ tiếng Lào
+
+---
+
+## 📋 MỤC LỤC
+1. [Giới thiệu](#giới-thiệu)
+2. [Cách khởi động ứng dụng](#cách-khởi-động-ứng-dụng)
+3. [Giao diện chính](#giao-diện-chính)
+4. [Dịch văn bản cơ bản](#dịch-văn-bản-cơ-bản)
+5. [Chuyển đổi ngôn ngữ](#chuyển-đổi-ngôn-ngữ)
+6. [Dịch từ file](#dịch-từ-file)
+7. [Chế độ tối](#chế-độ-tối)
+8. [Các tính năng bổ sung](#các-tính-năng-bổ-sung)
+9. [Xử lý lỗi thường gặp](#xử-lý-lỗi-thường-gặp)
+10. [Lưu ý quan trọng](#lưu-ý-quan-trọng)
+
+---
+
+## 🌟 GIỚI THIỆU
+
+LVTranslator là một ứng dụng web hiện đại giúp dịch thuật giữa tiếng Việt và tiếng Lào một cách nhanh chóng và chính xác. Ứng dụng sử dụng công nghệ AI tiên tiến để đảm bảo chất lượng dịch thuật cao.
+
+### Tính năng chính:
+- ✅ Dịch thuật hai chiều: Việt ↔ Lào
+- ✅ Hỗ trợ font chữ Phetsarath OT cho tiếng Lào
+- ✅ Tải lên và dịch file (DOCX, PDF, hình ảnh)
+- ✅ Giao diện hiện đại với chế độ tối
+- ✅ Sao chép kết quả dịch nhanh chóng
+- ✅ Tương thích với mọi thiết bị
+
+---
+
+## 🚀 CÁCH KHỞI ĐỘNG ỨNG DỤNG
+
+### Bước 1: Mở ứng dụng
+- Tìm file `index.html` trong thư mục dự án
+- Nhấp đúp chuột vào file để mở bằng trình duyệt web
+- Hoặc kéo thả file vào cửa sổ trình duyệt
+
+### Bước 2: Đợi tải hoàn tất
+- Ứng dụng sẽ hiển thị giao diện chính
+- Font chữ Phetsarath OT sẽ được tải tự động
+- Sẵn sàng sử dụng!
+
+---
+
+## 🖥️ GIAO DIỆN CHÍNH
+
+Khi mở ứng dụng, bạn sẽ thấy các thành phần sau:
+
+### 1. Header (Phần đầu)
+- **Tiêu đề**: "Vietnamese ↔ Lao Translator"
+- **Mô tả**: "Translate between Vietnamese and Lao languages using AI"
+- **Nút Dark Mode**: Ở góc trên bên phải (🌙 Dark Mode)
+
+### 2. Khu vực dịch thuật
+- **Panel Input**: Bên trái - nhập văn bản cần dịch
+- **Nút chuyển đổi**: Ở giữa (⇄) - đổi hướng dịch
+- **Panel Output**: Bên phải - hiển thị kết quả dịch
+
+### 3. Các nút điều khiển
+- **🔄 Translate**: Bắt đầu dịch
+- **🗑️ Clear**: Xóa tất cả nội dung
+- **📋 Copy Translation**: Sao chép kết quả dịch
+
+### 4. Khu vực tải file
+- **📁 Upload Document**: Tải lên file để dịch
+- Hỗ trợ: DOCX, PDF, JPG, PNG
+
+---
+
+## ✍️ DỊCH VĂN BẢN CƠ BẢN
+
+### Bước 1: Nhập văn bản
+- Nhấp vào ô "Input Text" (bên trái)
+- Gõ hoặc dán văn bản cần dịch
+- Có thể nhập nhiều dòng
+
+### Bước 2: Chọn ngôn ngữ
+- Kiểm tra nút ngôn ngữ ở góc trên mỗi panel
+- Mặc định: Vietnamese → Lao
+- Có thể thay đổi bằng nút chuyển đổi
+
+### Bước 3: Bắt đầu dịch
+- Nhấp nút **🔄 Translate**
+- Hoặc nhấn **Ctrl + Enter** trên bàn phím
+- Đợi vài giây để AI xử lý
+
+### Bước 4: Xem kết quả
+- Kết quả dịch xuất hiện ở panel bên phải
+- Tiếng Lào sẽ hiển thị với font Phetsarath OT
+- Có thể sao chép bằng nút **📋 Copy Translation**
+
+---
+
+## 🔄 CHUYỂN ĐỔI NGÔN NGỮ
+
+### Cách 1: Sử dụng nút chuyển đổi
+- Nhấp vào nút **⇄** ở giữa hai panel
+- Ngôn ngữ sẽ đổi ngược lại
+- Nội dung hai panel cũng được hoán đổi
+
+### Cách 2: Thay đổi thủ công
+- Nhấp vào nút ngôn ngữ ở góc trên mỗi panel
+- Chọn ngôn ngữ mong muốn
+- Nhập văn bản mới và dịch
+
+---
+
+## 📁 DỊCH TỪ FILE
+
+### Bước 1: Tải lên file
+- Cuộn xuống khu vực "Upload Document"
+- Nhấp nút **Choose File**
+- Chọn file cần dịch (DOCX, PDF, JPG, PNG)
+
+### Bước 2: Xem thông tin file
+- Tên file, kích thước, loại file sẽ hiển thị
+- Kiểm tra xem file có đúng định dạng không
+
+### Bước 3: Trích xuất văn bản
+- Ứng dụng tự động trích xuất văn bản từ file
+- Văn bản trích xuất hiển thị trong khung "Extracted Text"
+- Kiểm tra và chỉnh sửa nếu cần
+
+### Bước 4: Dịch văn bản
+- Nhấp nút **🔄 Translate Extracted Text**
+- Kết quả dịch xuất hiện bên dưới
+- Có thể sao chép bằng nút copy riêng
+
+### Hỗ trợ file:
+- **DOCX**: File Word (.docx)
+- **PDF**: File PDF (.pdf)
+- **Hình ảnh**: JPG, JPEG, PNG (OCR)
+
+---
+
+## 🌙 CHẾ ĐỘ TỐI
+
+### Bật/tắt chế độ tối
+- Nhấp nút **🌙 Dark Mode** ở góc trên bên phải
+- Giao diện chuyển sang màu tối
+- Nhấp lại để chuyển về chế độ sáng
+
+### Lưu ý:
+- Chế độ được lưu tự động
+- Khi mở lại ứng dụng, chế độ sẽ được khôi phục
+- Phù hợp cho việc sử dụng ban đêm
+
+---
+
+## ⚡ CÁC TÍNH NĂNG BỔ SUNG
+
+### 1. Phím tắt
+- **Ctrl + Enter**: Dịch nhanh
+- **Enter**: Xuống dòng trong ô nhập liệu
+
+### 2. Sao chép nhanh
+- Nút **📋 Copy Translation**: Sao chép kết quả dịch
+- Nút **📋 Copy Translation** trong khu vực file: Sao chép dịch từ file
+- Tự động thông báo khi sao chép thành công
+
+### 3. Thông báo
+- Thông báo thành công: Nền xanh lá
+- Thông báo lỗi: Nền đỏ
+- Tự động ẩn sau 5 giây
+
+### 4. Responsive
+- Tương thích với điện thoại, tablet
+- Giao diện tự động điều chỉnh theo kích thước màn hình
+
+---
+
+## ⚠️ XỬ LÝ LỖI THƯỜNG GẶP
+
+### 1. Lỗi "API key is not configured"
+**Nguyên nhân**: API key chưa được cấu hình
+**Giải pháp**: 
+- Liên hệ nhà phát triển để cấu hình API key
+- Hoặc sử dụng phiên bản offline
+
+### 2. Lỗi "Translation failed"
+**Nguyên nhân**: Lỗi kết nối mạng hoặc API
+**Giải pháp**:
+- Kiểm tra kết nối internet
+- Thử lại sau vài phút
+- Kiểm tra độ dài văn bản (không quá 2000 ký tự)
+
+### 3. Font tiếng Lào không hiển thị đúng
+**Nguyên nhân**: Font Phetsarath OT chưa tải
+**Giải pháp**:
+- Tải lại trang web
+- Kiểm tra file font trong thư mục front/
+- Thử trình duyệt khác
+
+### 4. File không tải được
+**Nguyên nhân**: Định dạng file không hỗ trợ
+**Giải pháp**:
+- Chỉ hỗ trợ: DOCX, PDF, JPG, PNG
+- Kiểm tra kích thước file (không quá 10MB)
+- Thử file khác
+
+### 5. Không sao chép được
+**Nguyên nhân**: Trình duyệt không hỗ trợ Clipboard API
+**Giải pháp**:
+- Chọn văn bản thủ công và copy
+- Thử trình duyệt khác (Chrome, Firefox)
+- Cập nhật trình duyệt
+
+---
+
+## 📝 LƯU Ý QUAN TRỌNG
+
+### 1. Về chất lượng dịch
+- Sử dụng AI, có thể có lỗi nhỏ
+- Kiểm tra kỹ kết quả trước khi sử dụng
+- Đặc biệt với văn bản chuyên ngành
+
+### 2. Về bảo mật
+- Văn bản được gửi đến Google AI để dịch
+- Không lưu trữ dữ liệu cá nhân
+- Sử dụng kết nối HTTPS an toàn
+
+### 3. Về hiệu suất
+- Tốc độ dịch phụ thuộc vào độ dài văn bản
+- File lớn cần thời gian xử lý lâu hơn
+- Nên chia nhỏ văn bản dài
+
+### 4. Về font chữ
+- Font Phetsarath OT được tối ưu cho tiếng Lào
+- Hiển thị tốt nhất trên màn hình độ phân giải cao
+- Có thể khác biệt nhẹ giữa các thiết bị
+
+---
+
+## 🆘 HỖ TRỢ
+
+Nếu gặp vấn đề hoặc cần hỗ trợ:
+- **Tác giả**: Khamko
+- **Facebook**: https://www.facebook.com/khamkoxys
+- **Email**: Liên hệ qua Facebook
+
+---
+
+## 📄 THÔNG TIN PHÁP LÝ
+
+- © 2024 Khamko. All rights reserved.
+- Font Phetsarath OT có giấy phép riêng
+- Vui lòng kiểm tra giấy phép trước khi sử dụng
+
+---
+
+*Tài liệu này được cập nhật lần cuối: Tháng 12/2024*
+*Phiên bản ứng dụng: 1.0*
