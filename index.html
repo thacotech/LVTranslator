@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vietnamese ↔ Lao Translator</title>
+    <style>
+        @font-face {
+            font-family: 'Phetsarath OT';
+            src: url('./front/Phetsarath OT.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .header h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        /* Toggle Dark Mode Button */
+        .darkmode-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: linear-gradient(45deg, #333, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 10;
+        }
+        .darkmode-toggle:hover {
+            background: linear-gradient(45deg, #764ba2, #333);
+        }
+
+        /* DARK MODE STYLES */
+        body.dark-mode {
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+        }
+        body.dark-mode .container {
+            background: rgba(30, 32, 34, 0.98);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+        body.dark-mode .header h1 {
+            color: #eee;
+            background: linear-gradient(45deg, #b993d6, #8ca6db);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        body.dark-mode .header p {
+            color: #bbb;
+        }
+        body.dark-mode .input-panel,
+        body.dark-mode .output-panel,
+        body.dark-mode .file-upload-section {
+            background: #23272b;
+            border-color: #444;
+        }
+        body.dark-mode .panel-title,
+        body.dark-mode .file-upload-section h3 {
+            color: #e0e0e0;
+        }
+        body.dark-mode .language-selector {
+            background: #23272b;
+            color: #b993d6;
+            border-color: #b993d6;
+        }
+        body.dark-mode .language-selector:hover {
+            background: #b993d6;
+            color: #23272b;
+        }
+        body.dark-mode .text-input,
+        body.dark-mode .text-output {
+            background: #181a1b;
+            color: #f1f1f1;
+            border-color: #444;
+        }
+        body.dark-mode .text-output {
+            border-color: #28a745;
+        }
+        body.dark-mode .controls .translate-btn {
+            background: linear-gradient(45deg, #218838, #13896b);
+        }
+        body.dark-mode .controls .clear-btn {
+            background: linear-gradient(45deg, #b52a37, #fd7e14);
+        }
+        body.dark-mode .controls .copy-btn {
+            background: linear-gradient(45deg, #4b2c7c, #e83e8c);
+        }
+        body.dark-mode .file-input-btn {
+            background: linear-gradient(45deg, #17a2b8, #764ba2);
+        }
+        body.dark-mode .file-info {
+            background: #23272b;
+            color: #eee;
+            border-color: #444;
+        }
+        body.dark-mode .extracted-text {
+            background: #181a1b;
+            color: #f1f1f1;
+            border-color: #17a2b8;
+        }
+        body.dark-mode .success-message {
+            background: #233524;
+            color: #b6fcb6;
+            border-color: #28a745;
+        }
+        body.dark-mode .error-message {
+            background: #3a1a1a;
+            color: #ffb3b3;
+            border-color: #b52a37;
+        }
+        body.dark-mode .copy-translated-btn {
+            background: linear-gradient(45deg, #4b2c7c, #e83e8c);
+            color: #fff;
+        }
+        body.dark-mode .copy-translated-btn:hover {
+            background: linear-gradient(45deg, #218838, #13896b);
+        }
+        body.dark-mode .switch-btn {
+            background: #23272b;
+            color: #b993d6;
+            border-color: #b993d6;
+        }
+        body.dark-mode .switch-btn:hover {
+            background: #b993d6;
+            color: #23272b;
+        }
+        body.dark-mode .translated-text-content.lao-text {
+            color: #f1f1f1;
+        }
+
+        .translation-section {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr; /* Thay đổi để có 3 cột: input, switch button, output */
+            grid-template-rows: auto;
+            gap: 30px;
+            margin-bottom: 30px;
+            align-items: start; /* Thêm để căn chỉnh từ trên xuống */
+        }
+
+        .input-panel {
+            grid-column: 1;
+            grid-row: 1;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+        }
+
+        .output-panel {
+            grid-column: 3;
+            grid-row: 1;
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid #e9ecef;
+        }
+
+        .switch-languages {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0; /* Bỏ margin âm */
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .language-selector {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 25px;
+            background: white;
+            color: #667eea;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .language-selector:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .text-input, .text-output {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .text-output {
+            background: #fff;
+            border-color: #28a745;
+            color: #333;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .translate-btn, .clear-btn, .copy-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .translate-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+            color: white;
+        }
+
+        .translate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+        }
+
+        .translate-btn:disabled {
+            background: #6c757d;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .clear-btn {
+            background: linear-gradient(45deg, #dc3545, #fd7e14);
+            color: white;
+        }
+
+        .clear-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+        }
+
+        .copy-btn {
+            background: linear-gradient(45deg, #6f42c1, #e83e8c);
+            color: white;
+        }
+
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(111, 66, 193, 0.3);
+        }
+
+        .file-upload-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border: 2px dashed #adb5bd;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .file-upload-section h3 {
+            color: #495057;
+            margin-bottom: 15px;
+        }
+
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .file-input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-input-btn {
+            background: linear-gradient(45deg, #17a2b8, #6610f2);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .file-input-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(23, 162, 184, 0.3);
+        }
+
+        .file-info {
+            margin-top: 15px;
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .extracted-text {
+            background: white;
+            border: 2px solid #17a2b8;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #f5c6cb;
+        }
+
+        .success-message {
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* Cập nhật class cho text tiếng Lào */
+        .lao-text {
+            font-family: 'Phetsarath OT', Arial, sans-serif !important;
+            font-size: 18px !important;
+            line-height: 1.8 !important;
+        }
+
+        /* Áp dụng cho textarea khi có class lao-text */
+        textarea.lao-text {
+            font-family: 'Phetsarath OT', Arial, sans-serif !important;
+            font-size: 18px !important;
+            line-height: 1.8 !important;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                padding: 20px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .translation-section {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 20px;
+            }
+            
+            .input-panel {
+                grid-column: 1;
+                grid-row: 1;
+            }
+            
+            .switch-languages {
+                grid-column: 1;
+                grid-row: 2;
+            }
+            
+            .output-panel {
+                grid-column: 1;
+                grid-row: 3;
+            }
+
+            .controls {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .translate-btn, .clear-btn, .copy-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        .switch-languages {
+            grid-column: 1 / -1;
+            text-align: center;
+            margin: -15px 0;
+        }
+
+        .switch-btn {
+            background: #fff;
+            border: 2px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            color: #667eea;
+            transition: all 0.3s ease;
+        }
+
+        .switch-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: rotate(180deg);
+        }
+
+        .translated-content-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .copy-translated-btn {
+            background: linear-gradient(45deg, #6f42c1, #e83e8c);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .copy-translated-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(111, 66, 193, 0.3);
+        }
+
+        /* Thêm CSS cho translated content alignment */
+        .translated-text-content {
+            text-align: left !important;
+            direction: ltr;
+            unicode-bidi: normal;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            line-height: 1.6;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Đảm bảo font Lao cũng căn trái */
+        .translated-text-content.lao-text {
+            text-align: left !important;
+            font-family: 'Phetsarath OT', Arial, sans-serif !important;
+            font-size: 18px !important;
+            line-height: 1.8 !important;
+        }
+
+        .site-footer {
+            text-align: center;
+            padding: 24px 0 10px 0;
+            color: #ecebeb;
+            font-size: 1rem;
+            background: none;
+        }
+        body.dark-mode .site-footer {
+            color: #b993d6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🌐 Vietnamese ↔ Lao Translator</h1>
+            <p>Translate between Vietnamese and Lao languages using AI</p>
+            <button class="darkmode-toggle" id="darkmodeToggle" title="Toggle Dark/Light Mode">🌙 Dark Mode</button>
+        </div>
+
+        <!-- Xóa phần API Configuration HTML -->
+
+        <!-- Translation Section -->
+        <div class="translation-section">
+            <div class="input-panel">
+                <div class="panel-header">
+                    <div class="panel-title">Input Text</div>
+                    <button class="language-selector" id="sourceLang">Vietnamese</button>
+                </div>
+                <textarea class="text-input" id="inputText" placeholder="Enter text to translate..."></textarea>
+            </div>
+
+            <div class="switch-languages">
+                <button class="switch-btn" id="switchBtn" title="Switch Languages">⇄</button>
+            </div>
+
+            <div class="output-panel">
+                <div class="panel-header">
+                    <div class="panel-title">Translation</div>
+                    <button class="language-selector" id="targetLang">Lao</button>
+                </div>
+                <textarea class="text-output" id="outputText" placeholder="Translation will appear here..." readonly></textarea>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+            <button class="translate-btn" id="translateBtn">
+                <span>🔄</span> Translate
+            </button>
+            <button class="clear-btn" id="clearBtn">
+                <span>🗑️</span> Clear
+            </button>
+            <button class="copy-btn" id="copyBtn">
+                <span>📋</span> Copy Translation
+            </button>
+        </div>
+
+        <!-- Loading indicator -->
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Translating...</p>
+        </div>
+
+        <!-- File Upload Section -->
+        <div class="file-upload-section">
+            <h3>📁 Upload Document for Translation</h3>
+            <p style="margin-bottom: 20px; color: #6c757d;">Support for DOCX, PDF, and image files (JPG, PNG)</p>
+            
+            <div class="file-input-wrapper">
+                <input type="file" class="file-input" id="fileInput" accept=".docx,.pdf,.jpg,.jpeg,.png" />
+                <button class="file-input-btn">Choose File</button>
+            </div>
+            
+            <div class="file-info" id="fileInfo" style="display: none;">
+                <p><strong>File:</strong> <span id="fileName"></span></p>
+                <p><strong>Size:</strong> <span id="fileSize"></span></p>
+                <p><strong>Type:</strong> <span id="fileType"></span></p>
+            </div>
+            
+            <div class="extracted-text" id="extractedText" style="display: none;">
+                <h4>Extracted Text:</h4>
+                <div id="extractedContent"></div>
+                <button class="translate-btn" id="translateFileBtn" style="margin-top: 15px;">
+                    <span>🔄</span> Translate Extracted Text
+                </button>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages"></div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        © <span id="copyrightYear"></span> <a href="https://www.facebook.com/khamkoxys" target="_blank" style="color:inherit;text-decoration:underline;cursor:pointer;">Khamko</a>. All rights reserved.
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        class VietnameseLaoTranslator {
+            constructor() {
+                // API key được cấu hình trực tiếp trong code
+                this.apiKey = 'AIzaSyBJC6QWaG8px7VOMY3nBBWKHhN7_SBxmXo'; // Thay thế bằng API key thực của bạn
+                this.isVietnameseToLao = true;
+                this.initializeElements();
+                this.attachEventListeners();
+                this.updateFontStyles(); // Thêm dòng này
+                this.initDarkMode(); // Thêm dòng này
+            }
+
+            initializeElements() {
+                // Main elements
+                this.inputText = document.getElementById('inputText');
+                this.outputText = document.getElementById('outputText');
+                this.sourceLang = document.getElementById('sourceLang');
+                this.targetLang = document.getElementById('targetLang');
+                
+                // Buttons
+                this.translateBtn = document.getElementById('translateBtn');
+                this.clearBtn = document.getElementById('clearBtn');
+                this.copyBtn = document.getElementById('copyBtn');
+                this.switchBtn = document.getElementById('switchBtn');
+                
+                // File upload elements
+                this.fileInput = document.getElementById('fileInput');
+                this.fileInfo = document.getElementById('fileInfo');
+                this.fileName = document.getElementById('fileName');
+                this.fileSize = document.getElementById('fileSize');
+                this.fileType = document.getElementById('fileType');
+                this.extractedText = document.getElementById('extractedText');
+                this.extractedContent = document.getElementById('extractedContent');
+                this.translateFileBtn = document.getElementById('translateFileBtn');
+                
+                // UI elements
+                this.loading = document.getElementById('loading');
+                this.messages = document.getElementById('messages');
+            }
+
+            attachEventListeners() {
+                // Translation controls
+                this.translateBtn.addEventListener('click', () => this.translateText());
+                this.clearBtn.addEventListener('click', () => this.clearAll());
+                this.copyBtn.addEventListener('click', () => this.copyTranslation());
+                this.switchBtn.addEventListener('click', () => this.switchLanguages());
+
+                // File upload
+                this.fileInput.addEventListener('change', (e) => this.handleFileUpload(e));
+                this.translateFileBtn.addEventListener('click', () => this.translateExtractedText());
+
+                // Enter key support
+                this.inputText.addEventListener('keydown', (e) => {
+                    if (e.ctrlKey && e.key === 'Enter') {
+                        this.translateText();
+                    }
+                });
+
+                // Dark mode toggle
+                this.darkmodeToggle = document.getElementById('darkmodeToggle');
+                this.darkmodeToggle.addEventListener('click', () => this.toggleDarkMode());
+            }
+
+            initDarkMode() {
+                // Check localStorage
+                const mode = localStorage.getItem('themeMode');
+                if (mode === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    this.setDarkModeBtn(true);
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    this.setDarkModeBtn(false);
+                }
+            }
+
+            toggleDarkMode() {
+                const isDark = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('themeMode', isDark ? 'dark' : 'light');
+                this.setDarkModeBtn(isDark);
+            }
+
+            setDarkModeBtn(isDark) {
+                if (isDark) {
+                    this.darkmodeToggle.innerHTML = '☀️ Light Mode';
+                    this.darkmodeToggle.title = 'Switch to Light Mode';
+                } else {
+                    this.darkmodeToggle.innerHTML = '🌙 Dark Mode';
+                    this.darkmodeToggle.title = 'Switch to Dark Mode';
+                }
+            }
+
+            switchLanguages() {
+                this.isVietnameseToLao = !this.isVietnameseToLao;
+                
+                if (this.isVietnameseToLao) {
+                    this.sourceLang.textContent = 'Vietnamese';
+                    this.targetLang.textContent = 'Lao';
+                } else {
+                    this.sourceLang.textContent = 'Lao';
+                    this.targetLang.textContent = 'Vietnamese';
+                }
+
+                // Swap text content
+                const inputValue = this.inputText.value;
+                const outputValue = this.outputText.value;
+                this.inputText.value = outputValue;
+                this.outputText.value = inputValue;
+                
+                // Cập nhật font styles sau khi switch
+                this.updateFontStyles();
+            }
+
+            // Thêm method mới để cập nhật font styles
+            updateFontStyles() {
+                // Xóa các class font cũ
+                this.inputText.classList.remove('lao-text');
+                this.outputText.classList.remove('lao-text');
+                
+                // Áp dụng font theo ngôn ngữ hiện tại
+                if (this.isVietnameseToLao) {
+                    // Input: Vietnamese, Output: Lao
+                    this.outputText.classList.add('lao-text');
+                } else {
+                    // Input: Lao, Output: Vietnamese
+                    this.inputText.classList.add('lao-text');
+                }
+            }
+
+            async translateText(customText = null) {
+                const textToTranslate = customText || this.inputText.value.trim();
+                
+                if (!textToTranslate) {
+                    this.showMessage('Please enter text to translate.', 'error');
+                    return;
+                }
+
+                if (!this.apiKey || this.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+                    this.showMessage('API key is not configured. Please set your Gemini API key in the code.', 'error');
+                    return;
+                }
+
+                try {
+                    this.showLoading(true);
+                    this.translateBtn.disabled = true;
+
+                    const translation = await this.callGeminiAPI(textToTranslate);
+                    
+                    if (customText) {
+                        // If translating extracted text, show in a separate area
+                        this.showTranslatedFileContent(translation);
+                    } else {
+                        this.outputText.value = translation;
+                        // Cập nhật font styles sau khi có translation
+                        this.updateFontStyles();
+                    }
+                    
+                    this.showMessage('Translation completed successfully!', 'success');
+                } catch (error) {
+                    console.error('Translation error:', error);
+                    this.outputText.value = '';
+                    this.showMessage(`Translation failed: ${error.message}`, 'error');
+                } finally {
+                    this.showLoading(false);
+                    this.translateBtn.disabled = false;
+                }
+            }
+
+            async callGeminiAPI(text) {
+                const sourceLanguage = this.isVietnameseToLao ? 'Vietnamese' : 'Lao';
+                const targetLanguage = this.isVietnameseToLao ? 'Lao' : 'Vietnamese';
+                
+                const prompt = `Translate the following ${sourceLanguage} text to ${targetLanguage}. Return only the complete translation without any explanations, formatting, or additional text:
+
+${text}`;
+
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.1,
+                            maxOutputTokens: 2000, // Tăng limit cho text dài
+                            topP: 0.8,
+                            topK: 10
+                        }
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json().catch(() => ({}));
+                    throw new Error(errorData.error?.message || `API request failed with status ${response.status}`);
+                }
+
+                const data = await response.json();
+                
+                if (!data.candidates || !data.candidates[0] || !data.candidates[0].content) {
+                    throw new Error('Invalid response format from API');
+                }
+
+                let translation = data.candidates[0].content.parts[0].text;
+                
+                // Clean up the response - nhưng giữ nguyên cấu trúc đoạn văn
+                translation = translation.replace(/\*\*/g, ''); // Remove bold formatting
+                translation = translation.replace(/^.*?translation.*?:/i, '').trim(); // Remove "translation:" prefix
+                translation = translation.replace(/\([^)]*\)/g, '').trim(); // Remove content in parentheses (more specific)
+                
+                // Không cắt theo dòng đầu tiên nữa - giữ nguyên toàn bộ translation
+                // translation = translation.split('\n')[0].trim(); // XÓA DÒNG NÀY
+                
+                return translation.trim();
+            }
+
+            clearAll() {
+                this.inputText.value = '';
+                this.outputText.value = '';
+                this.hideFileContent();
+                this.clearMessages();
+            }
+
+            async copyTranslation() {
+                const textToCopy = this.outputText.value;
+                
+                if (!textToCopy) {
+                    this.showMessage('No translation to copy.', 'error');
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(textToCopy);
+                    this.showMessage('Translation copied to clipboard!', 'success');
+                } catch (error) {
+                    // Fallback for browsers that don't support clipboard API
+                    this.outputText.select();
+                    document.execCommand('copy');
+                    this.showMessage('Translation copied to clipboard!', 'success');
+                }
+            }
+
+            async handleFileUpload(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                this.showFileInfo(file);
+
+                try {
+                    this.showLoading(true);
+                    let extractedText = '';
+
+                    if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
+                        extractedText = await this.extractFromDocx(file);
+                    } else if (file.type === 'application/pdf') {
+                        extractedText = await this.extractFromPdf(file);
+                    } else if (file.type.startsWith('image/')) {
+                        extractedText = await this.extractFromImage(file);
+                    } else {
+                        throw new Error('Unsupported file type');
+                    }
+
+                    this.showExtractedText(extractedText);
+                    this.showMessage('Text extracted successfully!', 'success');
+                } catch (error) {
+                    console.error('File processing error:', error);
+                    this.showMessage(`Failed to process file: ${error.message}`, 'error');
+                } finally {
+                    this.showLoading(false);
+                }
+            }
+
+            showFileInfo(file) {
+                this.fileName.textContent = file.name;
+                this.fileSize.textContent = this.formatFileSize(file.size);
+                this.fileType.textContent = file.type;
+                this.fileInfo.style.display = 'block';
+            }
+
+            formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+
+            async extractFromDocx(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            const result = await mammoth.extractRawText({ arrayBuffer: e.target.result });
+                            resolve(result.value);
+                        } catch (error) {
+                            reject(error);
+                        }
+                    };
+                    reader.onerror = () => reject(new Error('Failed to read DOCX file'));
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+
+            async extractFromPdf(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            const pdf = await pdfjsLib.getDocument({ data: e.target.result }).promise;
+                            let fullText = '';
+                            
+                            for (let i = 1; i <= pdf.numPages; i++) {
+                                const page = await pdf.getPage(i);
+                                const textContent = await page.getTextContent();
+                                const pageText = textContent.items.map(item => item.str).join(' ');
+                                fullText += pageText + '\n';
+                            }
+                            
+                            resolve(fullText.trim());
+                        } catch (error) {
+                            reject(error);
+                        }
+                    };
+                    reader.onerror = () => reject(new Error('Failed to read PDF file'));
+                    reader.readAsArrayBuffer(file);
+                });
+            }
+
+            async extractFromImage(file) {
+                // For image OCR, we'll use Gemini Vision API
+                if (!this.apiKey || this.apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
+                    throw new Error('API key is not configured for image text extraction');
+                }
+
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.onload = async (e) => {
+                        try {
+                            const base64Data = e.target.result.split(',')[1];
+                            const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`, {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    contents: [{
+                                        parts: [
+                                            {
+                                                text: "Extract all text from this image. Return only the extracted text without any additional formatting or explanations."
+                                            },
+                                            {
+                                                inline_data: {
+                                                    mime_type: file.type,
+                                                    data: base64Data
+                                                }
+                                            }
+                                        ]
+                                    }]
+                                })
+                            });
+
+                            if (!response.ok) {
+                                throw new Error(`API request failed with status ${response.status}`);
+                            }
+
+                            const data = await response.json();
+                            const extractedText = data.candidates[0].content.parts[0].text;
+                            resolve(extractedText);
+                        } catch (error) {
+                            reject(error);
+                        }
+                    };
+                    reader.onerror = () => reject(new Error('Failed to read image file'));
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            showExtractedText(text) {
+                this.extractedContent.textContent = text;
+                this.extractedText.style.display = 'block';
+            }
+
+            async translateExtractedText() {
+                const extractedText = this.extractedContent.textContent;
+                if (!extractedText) {
+                    this.showMessage('No extracted text to translate.', 'error');
+                    return;
+                }
+
+                await this.translateText(extractedText);
+            }
+
+            showTranslatedFileContent(translation) {
+                const translatedDiv = document.createElement('div');
+                translatedDiv.className = 'extracted-text';
+                translatedDiv.style.borderColor = '#28a745';
+                
+                // Áp dụng font Lao nếu đang dịch sang tiếng Lao
+                const contentClass = this.isVietnameseToLao ? 'lao-text' : '';
+                
+                // Tạo unique ID cho button copy
+                const copyBtnId = 'copyTranslatedBtn_' + Date.now();
+                const contentId = 'translatedContent_' + Date.now();
+                
+                translatedDiv.innerHTML = `
+                    <div class="translated-content-controls">
+                        <h4>Translated Text:</h4>
+                        <button class="copy-translated-btn" id="${copyBtnId}">
+                            <span>📋</span> Copy Translation
+                        </button>
+                    </div>
+                    <div id="${contentId}" class="translated-text-content ${contentClass}">${translation}</div>
+                `;
+                
+                // Remove any existing translation
+                const existingTranslation = document.querySelector('.extracted-text[style*="border-color: rgb(40, 167, 69)"]');
+                if (existingTranslation) {
+                    existingTranslation.remove();
+                }
+                
+                this.extractedText.parentNode.appendChild(translatedDiv);
+                
+                // Thêm event listener cho button copy
+                const copyBtn = document.getElementById(copyBtnId);
+                const content = document.getElementById(contentId);
+                
+                copyBtn.addEventListener('click', async () => {
+                    try {
+                        await navigator.clipboard.writeText(content.textContent);
+                        this.showMessage('Translated text copied to clipboard!', 'success');
+                        
+                        // Visual feedback
+                        const originalText = copyBtn.innerHTML;
+                        copyBtn.innerHTML = '<span>✅</span> Copied!';
+                        copyBtn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                        
+                        setTimeout(() => {
+                            copyBtn.innerHTML = originalText;
+                            copyBtn.style.background = 'linear-gradient(45deg, #6f42c1, #e83e8c)';
+                        }, 2000);
+                        
+                    } catch (error) {
+                        // Fallback for browsers that don't support clipboard API
+                        const range = document.createRange();
+                        range.selectNode(content);
+                        window.getSelection().removeAllRanges();
+                        window.getSelection().addRange(range);
+                        
+                        try {
+                            document.execCommand('copy');
+                            this.showMessage('Translated text copied to clipboard!', 'success');
+                            
+                            // Visual feedback
+                            const originalText = copyBtn.innerHTML;
+                            copyBtn.innerHTML = '<span>✅</span> Copied!';
+                            copyBtn.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
+                            
+                            setTimeout(() => {
+                                copyBtn.innerHTML = originalText;
+                                copyBtn.style.background = 'linear-gradient(45deg, #6f42c1, #e83e8c)';
+                            }, 2000);
+                            
+                        } catch (fallbackError) {
+                            this.showMessage('Failed to copy text. Please select and copy manually.', 'error');
+                        }
+                        
+                        window.getSelection().removeAllRanges();
+                    }
+                });
+            }
+
+            hideFileContent() {
+                this.fileInfo.style.display = 'none';
+                this.extractedText.style.display = 'none';
+                this.fileInput.value = '';
+                
+                // Remove translated content
+                const translatedContent = document.querySelector('.extracted-text[style*="border-color: rgb(40, 167, 69)"]');
+                if (translatedContent) {
+                    translatedContent.remove();
+                }
+            }
+
+            showLoading(show) {
+                this.loading.style.display = show ? 'block' : 'none';
+            }
+
+            showMessage(message, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `${type}-message`;
+                messageDiv.textContent = message;
+                
+                this.clearMessages();
+                this.messages.appendChild(messageDiv);
+                
+                // Auto-hide after 5 seconds
+                setTimeout(() => {
+                    messageDiv.remove();
+                }, 5000);
+            }
+
+            clearMessages() {
+                this.messages.innerHTML = '';
+            }
+        }
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', () => {
+            new VietnameseLaoTranslator();
+        });
+
+        // Set copyright year
+        document.addEventListener('DOMContentLoaded', function() {
+            var year = new Date().getFullYear();
+            document.getElementById('copyrightYear').textContent = year;
+        });
+    </script>
+</body>
+</html>
