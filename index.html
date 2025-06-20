@@ -522,17 +522,17 @@
           grid-template-rows: auto auto auto;
           gap: 20px;
         }
-        
+
         .input-panel {
           grid-column: 1;
           grid-row: 1;
         }
-        
+
         .switch-languages {
           grid-column: 1;
           grid-row: 2;
         }
-        
+
         .output-panel {
           grid-column: 1;
           grid-row: 3;
@@ -634,6 +634,48 @@
       }
       body.dark-mode .site-footer {
         color: #b993d6;
+      }
+
+      /* Lao Interface Font */
+      body.lao-interface {
+        font-family: "Phetsarath OT", Arial, sans-serif;
+      }
+
+      body.lao-interface .header h1,
+      body.lao-interface .header p,
+      body.lao-interface .panel-title,
+      body.lao-interface .language-selector,
+      body.lao-interface .text-input,
+      body.lao-interface .text-output,
+      body.lao-interface .translate-btn,
+      body.lao-interface .clear-btn,
+      body.lao-interface .copy-btn,
+      body.lao-interface .file-upload-section h3,
+      body.lao-interface .file-upload-section p,
+      body.lao-interface .file-input-btn,
+      body.lao-interface .file-info,
+      body.lao-interface .extracted-text h4,
+      body.lao-interface .loading p,
+      body.lao-interface .error-message,
+      body.lao-interface .success-message,
+      body.lao-interface .site-footer,
+      body.lao-interface .darkmode-toggle,
+      body.lao-interface .lang-btn {
+        font-family: "Phetsarath OT", Arial, sans-serif !important;
+      }
+
+      /* Ensure Lao text in translation areas always uses Phetsarath OT */
+      .lao-text {
+        font-family: "Phetsarath OT", Arial, sans-serif !important;
+        font-size: 18px !important;
+        line-height: 1.8 !important;
+      }
+
+      /* Áp dụng cho textarea khi có class lao-text */
+      textarea.lao-text {
+        font-family: "Phetsarath OT", Arial, sans-serif !important;
+        font-size: 18px !important;
+        line-height: 1.8 !important;
       }
     </style>
   </head>
@@ -870,7 +912,7 @@
             lo: {
               title: "🌐 ແປພາສາ ຫວຽດນາມ ↔ ລາວ",
               subtitle: "ແປພາສາລະຫວ່າງພາສາຫວຽດນາມ ແລະ ພາສາລາວ ໂດຍໃຊ້ AI",
-              inputText: "ຂໍ້ຄວາມຂາເຂົ້າ",
+              inputText: "ຂໍ້ຄວາມເຂົ້າ",
               translation: "ການແປພາສາ",
               vietnamese: "ພາສາຫວຽດນາມ",
               lao: "ພາສາລາວ",
@@ -974,6 +1016,13 @@
 
         updateInterfaceLanguage() {
           const t = this.translations[this.currentLang];
+
+          // Add/remove Lao interface class
+          if (this.currentLang === "lo") {
+            document.body.classList.add("lao-interface");
+          } else {
+            document.body.classList.remove("lao-interface");
+          }
 
           // Update header
           document.querySelector(".header h1").textContent = t.title;
