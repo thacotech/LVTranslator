@@ -677,6 +677,383 @@
         font-size: 18px !important;
         line-height: 1.8 !important;
       }
+
+      /* History Section Styles */
+      .history-section {
+        margin: 30px 0;
+      }
+
+      .history-header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .history-toggle-btn {
+        background: linear-gradient(45deg, #17a2b8, #6610f2);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0 auto;
+      }
+
+      .history-toggle-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(23, 162, 184, 0.3);
+      }
+
+      .history-panel {
+        background: #f8f9fa;
+        border-radius: 15px;
+        margin-top: 20px;
+        border: 1px solid #e9ecef;
+        max-height: 400px;
+        overflow: hidden;
+        animation: slideDown 0.3s ease;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .history-panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 25px;
+        border-bottom: 1px solid #e9ecef;
+        background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+      }
+
+      .history-panel-header h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.2rem;
+        font-weight: 600;
+      }
+
+      .history-actions {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .clear-history-btn {
+        background: linear-gradient(45deg, #dc3545, #fd7e14);
+        color: white;
+        border: none;
+        border-radius: 20px;
+        padding: 8px 15px;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .clear-history-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+      }
+
+      .close-history-btn {
+        background: #6c757d;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+      }
+
+      .close-history-btn:hover {
+        background: #5a6268;
+        transform: rotate(90deg);
+      }
+
+      .history-content {
+        max-height: 300px;
+        overflow-y: auto;
+        padding: 0;
+      }
+
+      .history-item {
+        padding: 15px 25px;
+        border-bottom: 1px solid #e9ecef;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .history-item:hover {
+        background-color: #e9ecef;
+        transform: translateX(5px);
+      }
+
+      .history-item:last-child {
+        border-bottom: none;
+      }
+
+      .history-item-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .history-item-text {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .source-text,
+      .translated-text {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex: 1;
+        min-width: 200px;
+      }
+
+      .language-tag {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        min-width: 30px;
+        text-align: center;
+      }
+
+      .text-preview {
+        color: #333;
+        font-size: 14px;
+        line-height: 1.4;
+        flex: 1;
+      }
+
+      .text-preview.lao-text {
+        font-family: "Phetsarath OT", Arial, sans-serif !important;
+        font-size: 16px !important;
+      }
+
+      .arrow {
+        color: #667eea;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 10px;
+      }
+
+      .history-item-meta {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 5px;
+      }
+
+      .timestamp {
+        color: #6c757d;
+        font-size: 12px;
+        font-style: italic;
+      }
+
+      .history-item-actions {
+        display: flex;
+        gap: 8px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .history-item:hover .history-item-actions {
+        opacity: 1;
+      }
+
+      .use-translation-btn,
+      .delete-item-btn {
+        background: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 20px;
+        width: 35px;
+        height: 35px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+      }
+
+      .use-translation-btn:hover {
+        background: #28a745;
+        color: white;
+        border-color: #28a745;
+        transform: scale(1.1);
+      }
+
+      .delete-item-btn:hover {
+        background: #dc3545;
+        color: white;
+        border-color: #dc3545;
+        transform: scale(1.1);
+      }
+
+      .history-empty {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6c757d;
+      }
+
+      .history-empty-icon {
+        font-size: 48px;
+        margin-bottom: 15px;
+        opacity: 0.5;
+      }
+
+      .history-empty p {
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #495057;
+      }
+
+      .history-empty small {
+        font-size: 14px;
+        color: #6c757d;
+      }
+
+      /* Dark Mode Styles for History */
+      body.dark-mode .history-panel {
+        background: #23272b;
+        border-color: #444;
+      }
+
+      body.dark-mode .history-panel-header {
+        background: linear-gradient(45deg, #23272b, #2c3034);
+        border-bottom-color: #444;
+      }
+
+      body.dark-mode .history-panel-header h3 {
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .history-item {
+        border-bottom-color: #444;
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .history-item:hover {
+        background-color: #2c3034;
+      }
+
+      body.dark-mode .text-preview {
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .text-preview.lao-text {
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .timestamp {
+        color: #adb5bd;
+      }
+
+      body.dark-mode .use-translation-btn,
+      body.dark-mode .delete-item-btn {
+        background: #2c3034;
+        border-color: #495057;
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .history-empty {
+        color: #adb5bd;
+      }
+
+      body.dark-mode .history-empty p {
+        color: #ced4da;
+      }
+
+      /* Responsive Design for History */
+      @media (max-width: 768px) {
+        .history-panel {
+          max-height: 350px;
+        }
+
+        .history-item {
+          padding: 12px 15px;
+        }
+
+        .history-item-text {
+          flex-direction: column;
+          gap: 10px;
+          align-items: flex-start;
+        }
+
+        .source-text,
+        .translated-text {
+          min-width: auto;
+          width: 100%;
+        }
+
+        .arrow {
+          transform: rotate(90deg);
+          margin: 5px 0;
+          align-self: center;
+        }
+
+        .history-item-actions {
+          opacity: 1;
+          flex-direction: column;
+          gap: 5px;
+        }
+
+        .use-translation-btn,
+        .delete-item-btn {
+          width: 30px;
+          height: 30px;
+          font-size: 12px;
+        }
+
+        .history-toggle-btn {
+          padding: 12px 25px;
+          font-size: 14px;
+        }
+      }
+
+      /* Lao Interface Font for History */
+      body.lao-interface .history-toggle-btn,
+      body.lao-interface .history-panel-header h3,
+      body.lao-interface .clear-history-btn,
+      body.lao-interface .history-empty p,
+      body.lao-interface .history-empty small {
+        font-family: "Phetsarath OT", Arial, sans-serif !important;
+      }
     </style>
   </head>
   <body>
@@ -755,6 +1132,39 @@
       <div class="loading" id="loading">
         <div class="spinner"></div>
         <p>Translating...</p>
+      </div>
+
+      <!-- History Section -->
+      <div class="history-section">
+        <div class="history-header">
+          <button class="history-toggle-btn" id="historyToggleBtn">
+            <span>📚</span> Translation History
+          </button>
+        </div>
+        
+        <div class="history-panel" id="historyPanel" style="display: none;">
+          <div class="history-panel-header">
+            <h3 id="historyPanelTitle">Recent Translations</h3>
+            <div class="history-actions">
+              <button class="clear-history-btn" id="clearHistoryBtn">
+                <span>🗑️</span> <span id="clearHistoryText">Clear All</span>
+              </button>
+              <button class="close-history-btn" id="closeHistoryBtn">
+                <span>✕</span>
+              </button>
+            </div>
+          </div>
+          
+          <div class="history-content" id="historyContent">
+            <!-- History items will be dynamically generated here -->
+          </div>
+          
+          <div class="history-empty" id="historyEmpty" style="display: none;">
+            <div class="history-empty-icon">📚</div>
+            <p id="historyEmptyText">No translation history yet</p>
+            <small id="historyEmptySubtext">Your translations will appear here</small>
+          </div>
+        </div>
       </div>
 
       <!-- File Upload Section -->
@@ -864,6 +1274,23 @@
               translatedTextCopied: "Translated text copied to clipboard!",
               failedToCopyText:
                 "Failed to copy text. Please select and copy manually.",
+              // History feature strings
+              translationHistory: "📚 Translation History",
+              recentTranslations: "Recent Translations",
+              clearAllHistory: "🗑️ Clear All",
+              noHistoryYet: "No translation history yet",
+              historySubtext: "Your translations will appear here",
+              historyCleared: "Translation history cleared successfully",
+              historyItemDeleted: "History item deleted",
+              historyLoadedFromHistory: "Translation loaded from history",
+              confirmClearHistory: "Are you sure you want to clear all translation history? This action cannot be undone.",
+              justNow: "Just now",
+              minuteAgo: "minute ago",
+              minutesAgo: "minutes ago",
+              hourAgo: "hour ago", 
+              hoursAgo: "hours ago",
+              dayAgo: "day ago",
+              daysAgo: "days ago",
             },
             vi: {
               title: "🌐 Dịch Thuật Việt ↔ Lào",
@@ -908,6 +1335,23 @@
                 "Đã sao chép văn bản đã dịch vào clipboard!",
               failedToCopyText:
                 "Không thể sao chép văn bản. Vui lòng chọn và sao chép thủ công.",
+              // History feature strings
+              translationHistory: "📚 Lịch Sử Dịch Thuật",
+              recentTranslations: "Bản Dịch Gần Đây",
+              clearAllHistory: "🗑️ Xóa Tất Cả",
+              noHistoryYet: "Chưa có lịch sử dịch thuật",
+              historySubtext: "Các bản dịch của bạn sẽ xuất hiện ở đây",
+              historyCleared: "Đã xóa lịch sử dịch thuật thành công",
+              historyItemDeleted: "Đã xóa mục lịch sử",
+              historyLoadedFromHistory: "Đã tải bản dịch từ lịch sử",
+              confirmClearHistory: "Bạn có chắc chắn muốn xóa toàn bộ lịch sử dịch thuật? Hành động này không thể hoàn tác.",
+              justNow: "Vừa xong",
+              minuteAgo: "phút trước",
+              minutesAgo: "phút trước",
+              hourAgo: "giờ trước",
+              hoursAgo: "giờ trước", 
+              dayAgo: "ngày trước",
+              daysAgo: "ngày trước",
             },
             lo: {
               title: "🌐 ແປພາສາ ຫວຽດນາມ ↔ ລາວ",
@@ -950,6 +1394,23 @@
               translatedTextCopied: "ຄັດລອກຂໍ້ຄວາມທີ່ແປແລ້ວໄປ clipboard ແລ້ວ!",
               failedToCopyText:
                 "ບໍ່ສາມາດຄັດລອກຂໍ້ຄວາມໄດ້. ກະລຸນາເລືອກ ແລະ ຄັດລອກດ້ວຍຕົນເອງ.",
+              // History feature strings
+              translationHistory: "📚 ປະຫວັດການແປພາສາ",
+              recentTranslations: "ການແປພາສາຫຼ້າສຸດ",
+              clearAllHistory: "🗑️ ລຶບທັງໝົດ",
+              noHistoryYet: "ຍັງບໍ່ມີປະຫວັດການແປພາສາ",
+              historySubtext: "ການແປພາສາຂອງເຈົ້າຈະປາກົດທີ່ນີ້",
+              historyCleared: "ລຶບປະຫວັດການແປພາສາສຳເລັດແລ້ວ",
+              historyItemDeleted: "ລຶບລາຍການປະຫວັດແລ້ວ",
+              historyLoadedFromHistory: "ໂຫລດການແປພາສາຈາກປະຫວັດແລ້ວ",
+              confirmClearHistory: "ເຈົ້າແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບປະຫວັດການແປພາສາທັງໝົດ? ການກະທຳນີ້ບໍ່ສາມາດຍົກເລີກໄດ້.",
+              justNow: "ຫາກໍ່ນີ້",
+              minuteAgo: "ນາທີກ່ອນ",
+              minutesAgo: "ນາທີກ່ອນ",
+              hourAgo: "ຊົ່ວໂມງກ່ອນ",
+              hoursAgo: "ຊົ່ວໂມງກ່ອນ",
+              dayAgo: "ມື້ກ່ອນ", 
+              daysAgo: "ມື້ກ່ອນ",
             },
           };
 
@@ -958,6 +1419,9 @@
           this.updateFontStyles();
           this.initDarkMode();
           this.initLanguage(); // Initialize language
+          
+          // Initialize translation history
+          this.history = new TranslationHistory(this);
         }
 
         initializeElements() {
@@ -989,6 +1453,12 @@
 
           // Language switcher elements
           this.langButtons = document.querySelectorAll(".lang-btn");
+
+          // History elements
+          this.historyToggleBtn = document.getElementById("historyToggleBtn");
+          this.historyPanel = document.getElementById("historyPanel");
+          this.clearHistoryBtn = document.getElementById("clearHistoryBtn");
+          this.closeHistoryBtn = document.getElementById("closeHistoryBtn");
         }
 
         initLanguage() {
@@ -1082,6 +1552,31 @@
             translateFileBtn.innerHTML = t.translateExtractedText;
           }
 
+          // Update history section
+          if (this.historyToggleBtn) {
+            this.historyToggleBtn.innerHTML = `<span>📚</span> ${t.translationHistory}`;
+          }
+          
+          const historyPanelTitle = document.getElementById("historyPanelTitle");
+          if (historyPanelTitle) {
+            historyPanelTitle.textContent = t.recentTranslations;
+          }
+          
+          const clearHistoryText = document.getElementById("clearHistoryText");
+          if (clearHistoryText) {
+            clearHistoryText.textContent = t.clearAllHistory.replace("🗑️ ", "");
+          }
+          
+          const historyEmptyText = document.getElementById("historyEmptyText");
+          if (historyEmptyText) {
+            historyEmptyText.textContent = t.noHistoryYet;
+          }
+          
+          const historyEmptySubtext = document.getElementById("historyEmptySubtext");
+          if (historyEmptySubtext) {
+            historyEmptySubtext.textContent = t.historySubtext;
+          }
+
           // Update footer
           document.getElementById("footerText").textContent =
             t.allRightsReserved;
@@ -1158,6 +1653,19 @@
             btn.addEventListener("click", () => {
               this.switchInterfaceLanguage(btn.dataset.lang);
             });
+          });
+
+          // History controls
+          this.historyToggleBtn.addEventListener("click", () => {
+            this.history.toggleHistoryPanel();
+          });
+          
+          this.clearHistoryBtn.addEventListener("click", () => {
+            this.history.clearAllHistory();
+          });
+          
+          this.closeHistoryBtn.addEventListener("click", () => {
+            this.historyPanel.style.display = 'none';
           });
         }
 
@@ -1250,10 +1758,16 @@
             if (customText) {
               // If translating extracted text, show in a separate area
               this.showTranslatedFileContent(translation);
+              // Save file translation to history
+              const direction = this.isVietnameseToLao ? 'vi-lo' : 'lo-vi';
+              this.history.saveTranslation(textToTranslate, translation, direction);
             } else {
               this.outputText.value = translation;
               // Cập nhật font styles sau khi có translation
               this.updateFontStyles();
+              // Save regular translation to history
+              const direction = this.isVietnameseToLao ? 'vi-lo' : 'lo-vi';
+              this.history.saveTranslation(textToTranslate, translation, direction);
             }
 
             this.showMessage(
@@ -1686,6 +2200,356 @@ ${text}`;
 
         clearMessages() {
           this.messages.innerHTML = "";
+        }
+      }
+
+      // TranslationHistory class for managing translation history
+      class TranslationHistory {
+        constructor(translator) {
+          this.translator = translator;
+          this.maxItems = 50; // Maximum items to store
+          this.storageKey = 'lvtranslator_history';
+          this.history = this.loadHistory();
+        }
+
+        // Save a new translation to history
+        saveTranslation(sourceText, translatedText, direction) {
+          try {
+            if (!sourceText || !translatedText) return;
+
+            const timestamp = Date.now();
+            const id = timestamp;
+
+            // Check for duplicate (same source text and direction)
+            const existingIndex = this.history.findIndex(
+              item => item.sourceText === sourceText && item.direction === direction
+            );
+
+            const historyItem = {
+              id: id,
+              sourceText: sourceText,
+              translatedText: translatedText,
+              direction: direction,
+              timestamp: timestamp,
+              preview: {
+                source: sourceText.length > 50 ? sourceText.substring(0, 50) + '...' : sourceText,
+                translated: translatedText.length > 50 ? translatedText.substring(0, 50) + '...' : translatedText
+              }
+            };
+
+            if (existingIndex !== -1) {
+              // Update existing item timestamp
+              this.history[existingIndex] = historyItem;
+            } else {
+              // Add new item to beginning of array
+              this.history.unshift(historyItem);
+            }
+
+            // Enforce maxItems limit
+            if (this.history.length > this.maxItems) {
+              this.history = this.history.slice(0, this.maxItems);
+            }
+
+            // Save to localStorage
+            this.saveToStorage();
+            
+            console.log('Translation saved to history:', historyItem);
+          } catch (error) {
+            console.error('Error saving translation to history:', error);
+            this.handleStorageError(error);
+          }
+        }
+
+        // Load history from localStorage
+        loadHistory() {
+          try {
+            const stored = localStorage.getItem(this.storageKey);
+            if (!stored) return [];
+
+            const parsed = JSON.parse(stored);
+            if (!Array.isArray(parsed)) return [];
+
+            // Validate and clean data
+            return parsed.filter(item => 
+              item && 
+              typeof item.id === 'number' &&
+              typeof item.sourceText === 'string' &&
+              typeof item.translatedText === 'string' &&
+              typeof item.direction === 'string' &&
+              typeof item.timestamp === 'number'
+            ).sort((a, b) => b.timestamp - a.timestamp); // Sort by newest first
+
+          } catch (error) {
+            console.error('Error loading history from localStorage:', error);
+            this.handleStorageError(error);
+            return [];
+          }
+        }
+
+        // Save history to localStorage
+        saveToStorage() {
+          try {
+            localStorage.setItem(this.storageKey, JSON.stringify(this.history));
+          } catch (error) {
+            console.error('Error saving to localStorage:', error);
+            this.handleStorageError(error);
+          }
+        }
+
+        // Clear all history
+        clearHistory() {
+          try {
+            this.history = [];
+            localStorage.removeItem(this.storageKey);
+            console.log('History cleared successfully');
+            return true;
+          } catch (error) {
+            console.error('Error clearing history:', error);
+            return false;
+          }
+        }
+
+        // Delete specific item
+        deleteItem(id) {
+          try {
+            const index = this.history.findIndex(item => item.id === id);
+            if (index !== -1) {
+              this.history.splice(index, 1);
+              this.saveToStorage();
+              console.log('History item deleted:', id);
+              return true;
+            }
+            return false;
+          } catch (error) {
+            console.error('Error deleting history item:', error);
+            return false;
+          }
+        }
+
+        // Get history items (with optional limit)
+        getHistory(limit = null) {
+          const items = [...this.history];
+          return limit ? items.slice(0, limit) : items;
+        }
+
+        // Handle localStorage errors
+        handleStorageError(error) {
+          if (error.name === 'QuotaExceededError') {
+            // Auto-cleanup: remove oldest 10 items
+            console.log('localStorage quota exceeded, cleaning up old items...');
+            this.history = this.history.slice(0, this.maxItems - 10);
+            try {
+              this.saveToStorage();
+            } catch (retryError) {
+              console.error('Failed to save after cleanup:', retryError);
+              // If still failing, clear all history
+              this.clearHistory();
+            }
+          } else {
+            // For other errors, clear corrupted data
+            console.log('Clearing corrupted history data...');
+            this.clearHistory();
+          }
+        }
+
+        // Check if localStorage is available
+        isStorageAvailable() {
+          try {
+            const test = '__storage_test__';
+            localStorage.setItem(test, test);
+            localStorage.removeItem(test);
+            return true;
+          } catch (error) {
+            return false;
+          }
+        }
+
+        // UI Methods
+        
+        // Toggle history panel visibility
+        toggleHistoryPanel() {
+          const panel = document.getElementById('historyPanel');
+          const isVisible = panel.style.display !== 'none';
+          
+          if (isVisible) {
+            panel.style.display = 'none';
+          } else {
+            panel.style.display = 'block';
+            this.renderHistory();
+          }
+        }
+
+        // Render history items in the UI
+        renderHistory() {
+          const historyContent = document.getElementById('historyContent');
+          const historyEmpty = document.getElementById('historyEmpty');
+          
+          if (!historyContent || !historyEmpty) return;
+
+          const historyItems = this.getHistory(20); // Show max 20 items
+
+          if (historyItems.length === 0) {
+            historyContent.innerHTML = '';
+            historyEmpty.style.display = 'block';
+            return;
+          }
+
+          historyEmpty.style.display = 'none';
+          historyContent.innerHTML = historyItems.map(item => this.createHistoryItemHTML(item)).join('');
+
+          // Add event listeners to history items
+          this.attachHistoryItemListeners();
+        }
+
+        // Create HTML for a single history item
+        createHistoryItemHTML(item) {
+          const sourceTag = item.direction === 'vi-lo' ? 'VI' : 'LO';
+          const targetTag = item.direction === 'vi-lo' ? 'LO' : 'VI';
+          const sourceLaoClass = item.direction === 'lo-vi' ? 'lao-text' : '';
+          const targetLaoClass = item.direction === 'vi-lo' ? 'lao-text' : '';
+
+          return `
+            <div class="history-item" data-id="${item.id}">
+              <div class="history-item-content">
+                <div class="history-item-text">
+                  <div class="source-text">
+                    <span class="language-tag">${sourceTag}</span>
+                    <span class="text-preview ${sourceLaoClass}">${this.escapeHtml(item.preview.source)}</span>
+                  </div>
+                  <div class="arrow">→</div>
+                  <div class="translated-text">
+                    <span class="language-tag">${targetTag}</span>
+                    <span class="text-preview ${targetLaoClass}">${this.escapeHtml(item.preview.translated)}</span>
+                  </div>
+                </div>
+                <div class="history-item-meta">
+                  <span class="timestamp">${this.formatTimestamp(item.timestamp)}</span>
+                </div>
+              </div>
+              <div class="history-item-actions">
+                <button class="use-translation-btn" title="Use this translation" data-action="use" data-id="${item.id}">
+                  <span>↩️</span>
+                </button>
+                <button class="delete-item-btn" title="Delete this item" data-action="delete" data-id="${item.id}">
+                  <span>🗑️</span>
+                </button>
+              </div>
+            </div>
+          `;
+        }
+
+        // Format timestamp to relative time
+        formatTimestamp(timestamp) {
+          const now = Date.now();
+          const diff = now - timestamp;
+          
+          const seconds = Math.floor(diff / 1000);
+          const minutes = Math.floor(seconds / 60);
+          const hours = Math.floor(minutes / 60);
+          const days = Math.floor(hours / 24);
+
+          const t = this.translator.translations[this.translator.currentLang];
+
+          if (seconds < 60) {
+            return t.justNow;
+          } else if (minutes < 60) {
+            return `${minutes} ${minutes > 1 ? t.minutesAgo : t.minuteAgo}`;
+          } else if (hours < 24) {
+            return `${hours} ${hours > 1 ? t.hoursAgo : t.hourAgo}`;
+          } else if (days < 7) {
+            return `${days} ${days > 1 ? t.daysAgo : t.dayAgo}`;
+          } else {
+            return new Date(timestamp).toLocaleDateString();
+          }
+        }
+
+        // Escape HTML to prevent XSS
+        escapeHtml(text) {
+          const div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+
+        // Attach event listeners to history items
+        attachHistoryItemListeners() {
+          const historyItems = document.querySelectorAll('.history-item');
+          
+          historyItems.forEach(item => {
+            // Click on item content to use translation
+            const content = item.querySelector('.history-item-content');
+            content.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const id = parseInt(item.dataset.id);
+              this.useTranslation(id);
+            });
+
+            // Action buttons
+            const actionButtons = item.querySelectorAll('[data-action]');
+            actionButtons.forEach(button => {
+              button.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const action = button.dataset.action;
+                const id = parseInt(button.dataset.id);
+                
+                if (action === 'use') {
+                  this.useTranslation(id);
+                } else if (action === 'delete') {
+                  this.deleteItemWithConfirmation(id);
+                }
+              });
+            });
+          });
+        }
+
+        // Use translation from history
+        useTranslation(id) {
+          const item = this.history.find(h => h.id === id);
+          if (!item) return;
+
+          // Set the correct direction
+          const shouldBeViToLao = item.direction === 'vi-lo';
+          if (this.translator.isVietnameseToLao !== shouldBeViToLao) {
+            this.translator.switchLanguages();
+          }
+
+          // Fill the input and output fields
+          this.translator.inputText.value = item.sourceText;
+          this.translator.outputText.value = item.translatedText;
+
+          // Update font styles
+          this.translator.updateFontStyles();
+
+          // Close history panel
+          document.getElementById('historyPanel').style.display = 'none';
+
+          // Show success message
+          const t = this.translator.translations[this.translator.currentLang];
+          this.translator.showMessage(t.historyLoadedFromHistory, 'success');
+        }
+
+        // Delete item with confirmation for individual items
+        deleteItemWithConfirmation(id) {
+          const success = this.deleteItem(id);
+          if (success) {
+            this.renderHistory();
+            const t = this.translator.translations[this.translator.currentLang];
+            this.translator.showMessage(t.historyItemDeleted, 'success');
+          }
+        }
+
+        // Clear all history with confirmation
+        clearAllHistory() {
+          const t = this.translator.translations[this.translator.currentLang];
+          
+          if (confirm(t.confirmClearHistory)) {
+            const success = this.clearHistory();
+            if (success) {
+              this.renderHistory();
+              this.translator.showMessage(t.historyCleared, 'success');
+            } else {
+              this.translator.showMessage('Failed to clear history', 'error');
+            }
+          }
         }
       }
 
