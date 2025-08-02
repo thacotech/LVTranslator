@@ -1333,7 +1333,7 @@ ${text}`;
           // Clean up the response - nhưng giữ nguyên cấu trúc đoạn văn
           translation = translation.replace(/\*\*/g, ""); // Remove bold formatting
           translation = translation.replace(/^.*?translation.*?:/i, "").trim(); // Remove "translation:" prefix
-          translation = translation.replace(/\([^)]*\)/g, "").trim(); // Remove content in parentheses (more specific)
+          // Đã xóa dòng remove content in parentheses để giữ nguyên nội dung trong ()
 
           // Không cắt theo dòng đầu tiên nữa - giữ nguyên toàn bộ translation
           // translation = translation.split('\n')[0].trim(); // XÓA DÒNG NÀY
