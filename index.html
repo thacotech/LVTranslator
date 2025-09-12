@@ -1054,6 +1054,93 @@
       body.lao-interface .history-empty small {
         font-family: "Phetsarath OT", Arial, sans-serif !important;
       }
+
+      /* Buy Me A Coffee Modal */
+      .bmc-modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px); /* Safari support */
+      }
+
+      .bmc-modal-content {
+        background-color: #fefefe;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 15px;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+
+      body.dark-mode .bmc-modal-content {
+        background-color: #2c3034;
+        border-color: #444;
+        color: #f1f1f1;
+      }
+
+      .bmc-close-btn {
+        color: #aaa;
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      .bmc-close-btn:hover,
+      .bmc-close-btn:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      body.dark-mode .bmc-close-btn:hover,
+      body.dark-mode .bmc-close-btn:focus {
+        color: #fff;
+      }
+
+      .qr-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+
+      .qr-container img {
+        max-width: 45%;
+        height: auto;
+        border-radius: 10px;
+        border: 2px solid #667eea;
+      }
+      body.dark-mode .qr-container img {
+        border-color: #b993d6;
+      }
+
+      .bmc-link {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+      .bmc-link:hover {
+        color: #fff;
+      }
+      body.dark-mode .bmc-link {
+        color: #b993d6;
+      }
+      body.dark-mode .bmc-link:hover {
+        color: #fff;
+      }
     </style>
   </head>
   <body>
@@ -1216,8 +1303,22 @@
         rel="noopener"
         style="color: inherit; text-decoration: underline; cursor: pointer"
         >Khamko</a
-      >. <span id="footerText">All rights reserved.</span>
+      >. <span id="footerText">All rights reserved.</span> |
+      <a id="buy-me-a-coffee" class="bmc-link">Buy Me a Coffee</a>
     </footer>
+
+    <!-- Buy Me a Coffee Modal -->
+    <div id="bmc-modal" class="bmc-modal">
+      <div class="bmc-modal-content">
+        <span class="bmc-close-btn">&times;</span>
+        <h2>Buy Me a Coffee</h2>
+        <p>If you find this tool helpful, please consider supporting me.</p>
+        <div class="qr-container">
+          <img src="./front/QR.jpg" alt="QR Code for Momo" />
+          <img src="./front/QR1.jpg" alt="QR Code for Bank" />
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -2557,6 +2658,27 @@ ${text}`;
       document.addEventListener("DOMContentLoaded", () => {
         new VietnameseLaoTranslator();
       });
+
+      // --- Buy Me a Coffee Modal Logic ---
+      const bmcModal = document.getElementById("bmc-modal");
+      const bmcLink = document.getElementById("buy-me-a-coffee");
+      const bmcCloseBtn = document.querySelector(".bmc-close-btn");
+
+      if (bmcLink) {
+        bmcLink.onclick = function () {
+          bmcModal.style.display = "block";
+        };
+      }
+      if (bmcCloseBtn) {
+        bmcCloseBtn.onclick = function () {
+          bmcModal.style.display = "none";
+        };
+      }
+      window.onclick = function (event) {
+        if (event.target == bmcModal) {
+          bmcModal.style.display = "none";
+        }
+      };
 
       // Set copyright year
       document.addEventListener("DOMContentLoaded", function () {
