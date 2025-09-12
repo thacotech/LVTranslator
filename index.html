@@ -1163,10 +1163,108 @@
       body.dark-mode .char-counter.limit-exceeded {
         color: #fd7e14;
       }
+
+      /* Privacy Policy Modal */
+      .privacy-modal {
+        display: none; /* Hidden by default, shown via JS */
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        align-items: center;
+        justify-content: center;
+      }
+
+      .privacy-modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 30px;
+        border: 1px solid #888;
+        width: 90%;
+        max-width: 550px;
+        border-radius: 15px;
+        text-align: left;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .privacy-modal-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+        color: #333;
+        text-align: center;
+      }
+
+      .privacy-modal-content p {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 20px;
+      }
+
+      .privacy-modal-content ul {
+        list-style-position: inside;
+        padding-left: 10px;
+        margin-bottom: 25px;
+      }
+
+      .privacy-modal-content li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 10px;
+        line-height: 1.5;
+      }
+
+      #privacy-consent-btn {
+        background: linear-gradient(45deg, #28a745, #20c997);
+        color: white;
+        border: none;
+        border-radius: 50px;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        width: 100%;
+      }
+
+      #privacy-consent-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+      }
+
+      body.dark-mode .privacy-modal-content {
+        background-color: #2c3034;
+        border-color: #444;
+      }
+      body.dark-mode .privacy-modal-content h2,
+      body.dark-mode .privacy-modal-content p,
+      body.dark-mode .privacy-modal-content li {
+        color: #f1f1f1;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
+    <div id="privacy-policy-modal" class="privacy-modal">
+      <div class="privacy-modal-content">
+        <h2>Chính sách Bảo mật & Điều khoản Sử dụng</h2>
+        <p>Vui lòng đọc và đồng ý với các điều khoản sau để tiếp tục sử dụng dịch vụ:</p>
+        <ul>
+            <li>Chúng tôi sẽ không chịu trách nhiệm cho bất kỳ sai sót nào trong bản dịch.</li>
+            <li>Không có dữ liệu nào của bạn được ghi lại.</li>
+            <li>Không có tài liệu nào của bạn được lưu trữ.</li>
+        </ul>
+        <button id="privacy-consent-btn">Đồng ý và Tiếp tục</button>
+      </div>
+    </div>
+
+    <div class="container" id="main-container">
       <!-- Header -->
       <div class="header">
         <h1>🌐 Vietnamese ↔ Lao Translator</h1>
@@ -2712,33 +2810,48 @@ ${text}`;
       // Initialize the application
       document.addEventListener("DOMContentLoaded", () => {
         new VietnameseLaoTranslator();
-      });
 
-      // --- Buy Me a Coffee Modal Logic ---
-      const bmcModal = document.getElementById("bmc-modal");
-      const bmcLink = document.getElementById("buy-me-a-coffee");
-      const bmcCloseBtn = document.querySelector(".bmc-close-btn");
-
-      if (bmcLink) {
-        bmcLink.onclick = function () {
-          bmcModal.style.display = "block";
-        };
-      }
-      if (bmcCloseBtn) {
-        bmcCloseBtn.onclick = function () {
-          bmcModal.style.display = "none";
-        };
-      }
-      window.onclick = function (event) {
-        if (event.target == bmcModal) {
-          bmcModal.style.display = "none";
-        }
-      };
-
-      // Set copyright year
-      document.addEventListener("DOMContentLoaded", function () {
+        // Set copyright year
         var year = new Date().getFullYear();
         document.getElementById("copyrightYear").textContent = year;
+
+        // --- Buy Me a Coffee Modal Logic ---
+        const bmcModal = document.getElementById("bmc-modal");
+        const bmcLink = document.getElementById("buy-me-a-coffee");
+        const bmcCloseBtn = document.querySelector(".bmc-close-btn");
+
+        if (bmcLink) {
+          bmcLink.onclick = function () {
+            bmcModal.style.display = "block";
+          };
+        }
+        if (bmcCloseBtn) {
+          bmcCloseBtn.onclick = function () {
+            bmcModal.style.display = "none";
+          };
+        }
+        window.onclick = function (event) {
+          if (event.target == bmcModal) {
+            bmcModal.style.display = "none";
+          }
+        };
+
+        // --- Privacy Policy Modal Logic ---
+        const privacyModal = document.getElementById("privacy-policy-modal");
+        const consentBtn = document.getElementById("privacy-consent-btn");
+        
+        const hasConsented = localStorage.getItem("privacyConsent");
+
+        if (!hasConsented) {
+          privacyModal.style.display = "flex";
+        }
+
+        if (consentBtn) {
+            consentBtn.addEventListener("click", function () {
+              localStorage.setItem("privacyConsent", "true");
+              privacyModal.style.display = "none";
+            });
+        }
       });
     </script>
   </body>
