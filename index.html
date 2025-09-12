@@ -1141,6 +1141,28 @@
       body.dark-mode .bmc-link:hover {
         color: #fff;
       }
+
+      /* Character Counter */
+      .char-counter {
+        text-align: right;
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 10px;
+        padding-right: 5px;
+      }
+
+      .char-counter.limit-exceeded {
+        color: #dc3545;
+        font-weight: bold;
+      }
+
+      body.dark-mode .char-counter {
+        color: #adb5bd;
+      }
+
+      body.dark-mode .char-counter.limit-exceeded {
+        color: #fd7e14;
+      }
     </style>
   </head>
   <body>
@@ -1181,7 +1203,9 @@
             class="text-input"
             id="inputText"
             placeholder="Enter text to translate..."
+            maxlength="5000"
           ></textarea>
+          <div id="charCounter" class="char-counter">0/5000</div>
         </div>
 
         <div class="switch-languages">
@@ -1329,6 +1353,7 @@
           this.apiKey = "AIzaSyCby_DhyWaI4N5eTX41ERE7HmyEVB_awpc"; // Thay thế bằng API key thực của bạn
           this.isVietnameseToLao = true;
           this.currentLang = "en"; // Default language
+          this.charLimit = 5000; // Character limit for translation
 
           // Language translations
           this.translations = {
@@ -1363,6 +1388,7 @@
               allRightsReserved: "All rights reserved.",
               // Messages
               enterTextToTranslate: "Please enter text to translate.",
+              textLimitExceeded: "You have exceeded the character limit.",
               apiKeyNotConfigured:
                 "API key is not configured. Please set your Gemini API key in the code.",
               translationCompleted: "Translation completed successfully!",
@@ -1422,6 +1448,7 @@
               allRightsReserved: "Bảo lưu mọi quyền.",
               // Messages
               enterTextToTranslate: "Vui lòng nhập văn bản cần dịch.",
+              textLimitExceeded: "Bạn đã vượt quá giới hạn ký tự.",
               apiKeyNotConfigured:
                 "API key chưa được cấu hình. Vui lòng đặt Gemini API key trong code.",
               translationCompleted: "Đã dịch thành công!", // Gợi ý
@@ -1483,6 +1510,7 @@
               allRightsReserved: "ສະຫງວນລິຂະສິດທັງໝົດ.",
               // Messages
               enterTextToTranslate: "ກະລຸນາປ້ອນຂໍ້ຄວາມທີ່ຕ້ອງການແປພາສາ.",
+              textLimitExceeded: "ທ່ານໄດ້ເກີນຂີດຈຳກັດຕົວອັກສອນແລ້ວ.",
               apiKeyNotConfigured:
                 "API key ຍັງບໍ່ໄດ້ຕັ້ງຄ່າ. ກະລຸນາຕັ້ງ Gemini API key ໃນ code.",
               translationCompleted: "ການແປພາສາສຳເລັດແລ້ວ!", // Gợi ý
@@ -1531,6 +1559,7 @@
           this.outputText = document.getElementById("outputText");
           this.sourceLang = document.getElementById("sourceLang");
           this.targetLang = document.getElementById("targetLang");
+          this.charCounter = document.getElementById("charCounter");
 
           // Buttons
           this.translateBtn = document.getElementById("translateBtn");
@@ -1728,6 +1757,9 @@
             this.switchLanguages()
           );
 
+          // Character counter
+          this.inputText.addEventListener("input", () => this.updateCharCounter());
+
           // File upload
           this.fileInput.addEventListener("change", (e) =>
             this.handleFileUpload(e)
@@ -1815,6 +1847,20 @@
           this.updateLanguageSelectors();
         }
 
+        // Add method for character counter
+        updateCharCounter() {
+          const currentLength = this.inputText.value.length;
+          this.charCounter.textContent = `${currentLength}/${this.charLimit}`;
+
+          if (currentLength > this.charLimit) {
+            this.charCounter.classList.add("limit-exceeded");
+            this.translateBtn.disabled = true;
+          } else {
+            this.charCounter.classList.remove("limit-exceeded");
+            this.translateBtn.disabled = false;
+          }
+        }
+
         // Thêm method mới để cập nhật font styles
         updateFontStyles() {
           // Xóa các class font cũ
@@ -1833,6 +1879,15 @@
 
         async translateText(customText = null) {
           const textToTranslate = customText || this.inputText.value.trim();
+          const currentLength = this.inputText.value.length;
+
+          if (currentLength > this.charLimit) {
+            this.showMessage(
+              this.translations[this.currentLang].textLimitExceeded,
+              "error"
+            );
+            return;
+          }
 
           if (!textToTranslate) {
             this.showMessage(
