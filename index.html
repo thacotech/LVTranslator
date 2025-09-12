@@ -280,11 +280,33 @@
         font-weight: 500;
         cursor: pointer;
         transition: all 0.3s ease;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23667eea%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+        background-repeat: no-repeat;
+        background-position: right 1rem center;
+        background-size: 0.65em auto;
+        padding-right: 2.5rem;
+      }
+
+      body.dark-mode .language-selector {
+        background: #23272b;
+        color: #b993d6;
+        border-color: #b993d6;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23b993d6%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
       }
 
       .language-selector:hover {
-        background: #667eea;
+        background-color: #667eea;
         color: white;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23ffffff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+      }
+
+      body.dark-mode .language-selector:hover {
+        background: #b993d6;
+        color: #23272b;
+        background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2323272b%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
       }
 
       .text-input,
@@ -1293,9 +1315,11 @@
         <div class="input-panel">
           <div class="panel-header">
             <div class="panel-title">Input Text</div>
-            <button class="language-selector" id="sourceLang">
-              Vietnamese
-            </button>
+            <select class="language-selector" id="sourceLangSelector">
+              <option value="vi">Vietnamese</option>
+              <option value="lo">Lao</option>
+              <option value="en">English</option>
+            </select>
           </div>
           <textarea
             class="text-input"
@@ -1315,7 +1339,11 @@
         <div class="output-panel">
           <div class="panel-header">
             <div class="panel-title">Translation</div>
-            <button class="language-selector" id="targetLang">Lao</button>
+            <select class="language-selector" id="targetLangSelector">
+              <option value="lo">Lao</option>
+              <option value="vi">Vietnamese</option>
+              <option value="en">English</option>
+            </select>
           </div>
           <textarea
             class="text-output"
@@ -1449,20 +1477,22 @@
         constructor() {
           // API key được cấu hình trực tiếp trong code
           this.apiKey = "AIzaSyCby_DhyWaI4N5eTX41ERE7HmyEVB_awpc"; // Thay thế bằng API key thực của bạn
-          this.isVietnameseToLao = true;
-          this.currentLang = "en"; // Default language
+          this.sourceLanguage = 'vi'; // Default source
+          this.targetLanguage = 'lo'; // Default target
+          this.currentLang = "en"; // Default interface language
           this.charLimit = 5000; // Character limit for translation
 
           // Language translations
           this.translations = {
             en: {
-              title: "🌐 Vietnamese ↔ Lao Translator",
+              title: "🌐 Multi-language Translator",
               subtitle:
-                "Translate between Vietnamese and Lao languages using AI",
+                "Translate between Vietnamese, Lao, and English using AI",
               inputText: "Input Text",
               translation: "Translation",
               vietnamese: "Vietnamese",
               lao: "Lao",
+              english: "English",
               enterTextPlaceholder: "Enter text to translate...",
               translationPlaceholder: "Translation will appear here...",
               translate: "🔄 Translate",
@@ -1518,12 +1548,13 @@
               daysAgo: "days ago",
             },
             vi: {
-              title: "🌐 Dịch Thuật Việt ↔ Lào",
-              subtitle: "Dịch thuật giữa tiếng Việt và tiếng Lào bằng AI",
+              title: "🌐 Dịch Thuật Đa Ngôn Ngữ",
+              subtitle: "Dịch giữa Tiếng Việt, Tiếng Lào, và Tiếng Anh bằng AI",
               inputText: "Văn Bản Đầu Vào",
               translation: "Bản Dịch",
               vietnamese: "Tiếng Việt",
               lao: "Tiếng Lào",
+              english: "Tiếng Anh",
               enterTextPlaceholder: "Nhập văn bản cần dịch...",
               translationPlaceholder: "Bản dịch sẽ xuất hiện ở đây...",
               translate: "🔄 Dịch", // Gợi ý
@@ -1580,12 +1611,13 @@
               daysAgo: "ngày trước",
             },
             lo: {
-              title: "🌐 ແປພາສາ ຫວຽດນາມ ↔ ລາວ",
-              subtitle: "ແປພາສາລະຫວ່າງພາສາຫວຽດນາມ ແລະ ພາສາລາວ ໂດຍໃຊ້ AI",
+              title: "🌐 ແປພາສາຫຼາຍພາສາ",
+              subtitle: "ແປພາສາລະຫວ່າງ ຫວຽດນາມ, ລາວ, ແລະ ອັງກິດ ໂດຍໃຊ້ AI",
               inputText: "ຂໍ້ຄວາມເຂົ້າ",
               translation: "ການແປພາສາ",
               vietnamese: "ພາສາຫວຽດນາມ",
               lao: "ພາສາລາວ",
+              english: "ພາສາອັງກິດ",
               enterTextPlaceholder: "ປ້ອນຂໍ້ຄວາມທີ່ຕ້ອງການແປພາສາ...",
               translationPlaceholder: "ການແປພາສາຈະປາກົດທີ່ນີ້...",
               translate: "🔄 ແປພາສາ",
@@ -1655,8 +1687,8 @@
           // Main elements
           this.inputText = document.getElementById("inputText");
           this.outputText = document.getElementById("outputText");
-          this.sourceLang = document.getElementById("sourceLang");
-          this.targetLang = document.getElementById("targetLang");
+          this.sourceLangSelector = document.getElementById("sourceLangSelector");
+          this.targetLangSelector = document.getElementById("targetLangSelector");
           this.charCounter = document.getElementById("charCounter");
 
           // Buttons
@@ -1695,6 +1727,16 @@
           if (savedLang && this.translations[savedLang]) {
             this.currentLang = savedLang;
           }
+
+          // Load last used translation languages
+          // const lastSource = localStorage.getItem('sourceLanguage');
+          // const lastTarget = localStorage.getItem('targetLanguage');
+          // if (lastSource) this.sourceLanguage = lastSource;
+          // if (lastTarget) this.targetLanguage = lastTarget;
+
+          this.sourceLangSelector.value = this.sourceLanguage;
+          this.targetLangSelector.value = this.targetLanguage;
+
 
           // Update language buttons
           this.updateLanguageButtons();
@@ -1740,7 +1782,7 @@
           this.outputText.placeholder = t.translationPlaceholder;
 
           // Update language selectors
-          this.updateLanguageSelectors();
+          this.updateLanguageSelectorOptions();
 
           // Update switch button title
           this.switchBtn.title = t.switchLanguages;
@@ -1810,16 +1852,25 @@
             t.allRightsReserved;
         }
 
-        updateLanguageSelectors() {
+        updateLanguageSelectorOptions() {
           const t = this.translations[this.currentLang];
+          const languages = {
+            vi: t.vietnamese,
+            lo: t.lao,
+            en: t.english
+          };
 
-          if (this.isVietnameseToLao) {
-            this.sourceLang.textContent = t.vietnamese;
-            this.targetLang.textContent = t.lao;
-          } else {
-            this.sourceLang.textContent = t.lao;
-            this.targetLang.textContent = t.vietnamese;
-          }
+          [this.sourceLangSelector, this.targetLangSelector].forEach(selector => {
+            const currentValue = selector.value;
+            selector.innerHTML = '';
+            for (const [code, name] of Object.entries(languages)) {
+              const option = document.createElement('option');
+              option.value = code;
+              option.textContent = name;
+              selector.appendChild(option);
+            }
+            selector.value = currentValue;
+          });
         }
 
         updateDarkModeButton() {
@@ -1854,6 +1905,10 @@
           this.switchBtn.addEventListener("click", () =>
             this.switchLanguages()
           );
+
+          // Language selectors
+          this.sourceLangSelector.addEventListener("change", (e) => this.handleLanguageChange(e, 'source'));
+          this.targetLangSelector.addEventListener("change", (e) => this.handleLanguageChange(e, 'target'));
 
           // Character counter
           this.inputText.addEventListener("input", () => this.updateCharCounter());
@@ -1929,8 +1984,37 @@
           }
         }
 
+        handleLanguageChange(event, type) {
+            const newLang = event.target.value;
+            if (type === 'source') {
+                if (newLang === this.targetLanguage) {
+                    // If source becomes same as target, swap target to old source
+                    this.targetLanguage = this.sourceLanguage;
+                    this.targetLangSelector.value = this.targetLanguage;
+                }
+                this.sourceLanguage = newLang;
+            } else { // type === 'target'
+                if (newLang === this.sourceLanguage) {
+                    // If target becomes same as source, swap source to old target
+                    this.sourceLanguage = this.targetLanguage;
+                    this.sourceLangSelector.value = this.sourceLanguage;
+                }
+                this.targetLanguage = newLang;
+            }
+            localStorage.setItem('sourceLanguage', this.sourceLanguage);
+            localStorage.setItem('targetLanguage', this.targetLanguage);
+            this.updateFontStyles();
+        }
+
         switchLanguages() {
-          this.isVietnameseToLao = !this.isVietnameseToLao;
+          // Swap languages
+          const tempLang = this.sourceLanguage;
+          this.sourceLanguage = this.targetLanguage;
+          this.targetLanguage = tempLang;
+
+          // Update selectors
+          this.sourceLangSelector.value = this.sourceLanguage;
+          this.targetLangSelector.value = this.targetLanguage;
 
           // Swap text content
           const inputValue = this.inputText.value;
@@ -1940,9 +2024,10 @@
 
           // Cập nhật font styles sau khi switch
           this.updateFontStyles();
-
-          // Cập nhật language selectors với bản dịch
-          this.updateLanguageSelectors();
+          
+          // Save to local storage
+          localStorage.setItem('sourceLanguage', this.sourceLanguage);
+          localStorage.setItem('targetLanguage', this.targetLanguage);
         }
 
         // Add method for character counter
@@ -1966,12 +2051,11 @@
           this.outputText.classList.remove("lao-text");
 
           // Áp dụng font theo ngôn ngữ hiện tại
-          if (this.isVietnameseToLao) {
-            // Input: Vietnamese, Output: Lao
-            this.outputText.classList.add("lao-text");
-          } else {
-            // Input: Lao, Output: Vietnamese
+          if (this.sourceLanguage === 'lo') {
             this.inputText.classList.add("lao-text");
+          }
+          if (this.targetLanguage === 'lo') {
+            this.outputText.classList.add("lao-text");
           }
         }
 
@@ -2013,14 +2097,14 @@
               // If translating extracted text, show in a separate area
               this.showTranslatedFileContent(translation);
               // Save file translation to history
-              const direction = this.isVietnameseToLao ? 'vi-lo' : 'lo-vi';
+              const direction = `${this.sourceLanguage}-${this.targetLanguage}`;
               this.history.saveTranslation(textToTranslate, translation, direction);
             } else {
               this.outputText.value = translation;
               // Cập nhật font styles sau khi có translation
               this.updateFontStyles();
               // Save regular translation to history
-              const direction = this.isVietnameseToLao ? 'vi-lo' : 'lo-vi';
+              const direction = `${this.sourceLanguage}-${this.targetLanguage}`;
               this.history.saveTranslation(textToTranslate, translation, direction);
             }
 
@@ -2044,10 +2128,13 @@
         }
 
         async callGeminiAPI(text) {
-          const sourceLanguage = this.isVietnameseToLao ? "Vietnamese" : "Lao";
-          const targetLanguage = this.isVietnameseToLao ? "Lao" : "Vietnamese";
+          const t = this.translations['en']; // Use English for API prompt
+          const languages = { vi: t.vietnamese, lo: t.lao, en: t.english };
 
-          const prompt = `Translate the following ${sourceLanguage} text to ${targetLanguage}. Return only the complete translation without any explanations, formatting, or additional text:
+          const sourceLanguageName = languages[this.sourceLanguage];
+          const targetLanguageName = languages[this.targetLanguage];
+
+          const prompt = `Translate the following ${sourceLanguageName} text to ${targetLanguageName}. Return only the complete translation without any explanations, formatting, or additional text:
 
 ${text}`;
 
@@ -2334,7 +2421,7 @@ ${text}`;
           translatedDiv.style.borderColor = "#28a745";
 
           // Áp dụng font Lao nếu đang dịch sang tiếng Lao
-          const contentClass = this.isVietnameseToLao ? "lao-text" : "";
+          const contentClass = this.targetLanguage === 'lo' ? "lao-text" : "";
 
           // Tạo unique ID cho button copy
           const copyBtnId = "copyTranslatedBtn_" + Date.now();
@@ -2657,10 +2744,11 @@ ${text}`;
 
         // Create HTML for a single history item
         createHistoryItemHTML(item) {
-          const sourceTag = item.direction === 'vi-lo' ? 'VI' : 'LO';
-          const targetTag = item.direction === 'vi-lo' ? 'LO' : 'VI';
-          const sourceLaoClass = item.direction === 'lo-vi' ? 'lao-text' : '';
-          const targetLaoClass = item.direction === 'vi-lo' ? 'lao-text' : '';
+          const [sourceLangCode, targetLangCode] = item.direction.split('-');
+          const sourceTag = sourceLangCode.toUpperCase();
+          const targetTag = targetLangCode.toUpperCase();
+          const sourceLaoClass = sourceLangCode === 'lo' ? 'lao-text' : '';
+          const targetLaoClass = targetLangCode === 'lo' ? 'lao-text' : '';
 
           return `
             <div class="history-item" data-id="${item.id}">
@@ -2760,11 +2848,13 @@ ${text}`;
           const item = this.history.find(h => h.id === id);
           if (!item) return;
 
+          const [sourceLang, targetLang] = item.direction.split('-');
+
           // Set the correct direction
-          const shouldBeViToLao = item.direction === 'vi-lo';
-          if (this.translator.isVietnameseToLao !== shouldBeViToLao) {
-            this.translator.switchLanguages();
-          }
+          this.translator.sourceLanguage = sourceLang;
+          this.translator.targetLanguage = targetLang;
+          this.translator.sourceLangSelector.value = sourceLang;
+          this.translator.targetLangSelector.value = targetLang;
 
           // Fill the input and output fields
           this.translator.inputText.value = item.sourceText;
