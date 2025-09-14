@@ -1309,6 +1309,82 @@
         color: #8ca6db;
       }
 
+      .contact-icon {
+        font-size: 1.2em;
+        margin-right: 8px;
+        display: inline-block;
+        width: 25px;
+        text-align: center;
+      }
+
+      .projects-section {
+        margin: 25px 0;
+        padding: 20px;
+        background: rgba(102, 126, 234, 0.05);
+        border-radius: 15px;
+        border: 2px solid rgba(102, 126, 234, 0.1);
+      }
+
+      body.dark-mode .projects-section {
+        background: rgba(185, 147, 214, 0.05);
+        border-color: rgba(185, 147, 214, 0.1);
+      }
+
+      .projects-section h3 {
+        margin-bottom: 15px;
+        color: #667eea;
+        font-size: 1.3rem;
+        font-weight: 600;
+      }
+
+      body.dark-mode .projects-section h3 {
+        color: #b993d6;
+      }
+
+      .project-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .project-icon {
+        font-size: 1.3em;
+        width: 30px;
+        text-align: center;
+      }
+
+      .project-link {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+      }
+
+      .project-link:hover {
+        color: #764ba2;
+        text-decoration: underline;
+      }
+
+      body.dark-mode .project-link {
+        color: #b993d6;
+      }
+
+      body.dark-mode .project-link:hover {
+        color: #8ca6db;
+      }
+
+      .project-description {
+        color: #666;
+        font-style: italic;
+        font-size: 0.95rem;
+      }
+
+      body.dark-mode .project-description {
+        color: #bbb;
+      }
+
       .about-me-link {
         cursor: pointer;
         text-decoration: underline;
@@ -1655,10 +1731,20 @@
           <img src="./front/Khamko_congua.jpg" alt="Khamko Profile" class="profile-image" />
           <div class="about-info">
             <p>Hello, my name is Khamko. I am from Laos and currently studying Information Technology at University of Science and Education - The University of Danang. At the same time, I am working as a Developer at a company in Da Nang, Viet Nam.</p>
+            
+            <div class="projects-section">
+              <h3>My Projects</h3>
+              <div class="project-item">
+                <span class="project-icon">🤖</span>
+                <a href="https://thacotech.github.io/LaoChat/" target="_blank" rel="noopener" class="project-link">Lao Chat Bot</a>
+                <span class="project-description">- AI chatbot with Lao language support</span>
+              </div>
+            </div>
+
             <p>If you would like to get in touch, please feel free to contact me via Facebook or Email.</p>
             <div class="contact-info">
-              <p><strong>Facebook:</strong> <a href="https://www.facebook.com/khamkoxys" target="_blank" rel="noopener">khamko</a></p>
-              <p><strong>Email:</strong> <a href="mailto:khamko@pascaliaasia.com">khamko@pascaliaasia.com</a></p>
+              <p><span class="contact-icon">📘</span> <a href="https://www.facebook.com/khamkoxys" target="_blank" rel="noopener">khamko</a></p>
+              <p><span class="contact-icon">✉️</span> <a href="mailto:khamko@pascaliaasia.com">khamko@pascaliaasia.com</a></p>
             </div>
           </div>
         </div>
