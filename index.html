@@ -1189,11 +1189,24 @@
         border-radius: 20px;
         position: relative;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .about-modal-content h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #333;
+        font-size: 2rem;
+        font-weight: 600;
       }
 
       body.dark-mode .about-modal-content {
         background-color: #2c3034;
         border-color: #444;
+        color: #f1f1f1;
+      }
+
+      body.dark-mode .about-modal-content h2 {
         color: #f1f1f1;
       }
 
@@ -1615,13 +1628,7 @@
     <!-- Footer -->
     <footer class="site-footer">
       © <span id="copyrightYear"></span>
-      <a
-        href="https://www.facebook.com/khamkoxys"
-        target="_blank"
-        rel="noopener"
-        style="color: inherit; text-decoration: underline; cursor: pointer"
-        >Khamko</a
-      >. <span id="footerText">All rights reserved.</span> |
+      <a><span id="footerText"> Khamko All rights reserved.</span></a> |
       <a id="buy-me-a-coffee" class="bmc-link">Buy Me a Coffee</a> |
       <a id="about-me" class="about-me-link">About Me</a>
     </footer>
@@ -1701,7 +1708,7 @@
               switchLanguages: "Switch Languages",
               copyTranslatedText: "📋 Copy Translation", // Giữ nguyên theo yêu cầu, dù có thể là "Copy Translated Text"
               copied: "✅ Copied!",
-              allRightsReserved: "All rights reserved.",
+              allRightsReserved: "Khamko All rights reserved.",
               // Messages
               enterTextToTranslate: "Please enter text to translate.",
               textLimitExceeded: "You have exceeded the character limit.",
