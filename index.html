@@ -2320,6 +2320,7 @@
 
           // File upload elements
           this.fileInput = document.getElementById("fileInput");
+          this.fileInputBtn = document.querySelector(".file-input-btn");
           this.fileInfo = document.getElementById("fileInfo");
           this.fileName = document.getElementById("fileName");
           this.fileSize = document.getElementById("fileSize");
@@ -2538,6 +2539,10 @@
           this.fileInput.addEventListener("change", (e) =>
             this.handleFileUpload(e)
           );
+          this.fileInputBtn.addEventListener("click", () => {
+            console.log('File input button clicked');
+            this.fileInput.click();
+          });
           this.translateFileBtn.addEventListener("click", () =>
             this.translateExtractedText()
           );
@@ -2862,8 +2867,13 @@ ${text}`;
         }
 
         async handleFileUpload(event) {
+          console.log('handleFileUpload called');
           const file = event.target.files[0];
-          if (!file) return;
+          if (!file) {
+            console.log('No file selected');
+            return;
+          }
+          console.log('File selected:', file.name, file.type, file.size);
 
           this.showFileInfo(file);
 
@@ -2875,15 +2885,19 @@ ${text}`;
               file.type ===
               "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
             ) {
+              console.log('Processing DOCX file...');
               extractedText = await this.extractFromDocx(file);
             } else if (file.type === "application/pdf") {
+              console.log('Processing PDF file...');
               extractedText = await this.extractFromPdf(file);
             } else if (file.type.startsWith("image/")) {
+              console.log('Processing image file...');
               extractedText = await this.extractFromImage(file);
             } else {
               throw new Error("Unsupported file type");
             }
 
+            console.log('Extracted text length:', extractedText.length);
             this.showExtractedText(extractedText);
             this.showMessage(
               this.translations[this.currentLang].textExtractedSuccessfully,
@@ -2906,7 +2920,7 @@ ${text}`;
           this.fileName.textContent = file.name;
           this.fileSize.textContent = this.formatFileSize(file.size);
           this.fileType.textContent = file.type;
-          this.fileInfo.style.display = "block";
+          this.fileInfo.classList.remove('hidden');
         }
 
         formatFileSize(bytes) {
@@ -2920,20 +2934,26 @@ ${text}`;
         }
 
         async extractFromDocx(file) {
+          console.log('extractFromDocx called for file:', file.name);
           return new Promise((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = async (e) => {
               try {
+                console.log('FileReader loaded, calling mammoth...');
                 const result = await mammoth.extractRawText({
                   arrayBuffer: e.target.result,
                 });
+                console.log('Mammoth extraction result:', result.value.substring(0, 100) + '...');
                 resolve(result.value);
               } catch (error) {
+                console.error('Mammoth extraction error:', error);
                 reject(error);
               }
             };
-            reader.onerror = () =>
+            reader.onerror = () => {
+              console.error('FileReader error');
               reject(new Error("Failed to read DOCX file"));
+            };
             reader.readAsArrayBuffer(file);
           });
         }
@@ -3027,8 +3047,9 @@ ${text}`;
         }
 
         showExtractedText(text) {
+          console.log('showExtractedText called with text:', text.substring(0, 100) + '...');
           this.extractedContent.textContent = text;
-          this.extractedText.style.display = "block";
+          this.extractedText.classList.remove('hidden');
         }
 
         async translateExtractedText() {
@@ -3612,6 +3633,21 @@ ${text}`;
               localStorage.setItem("privacyConsent", "true");
               privacyModal.style.display = "none";
             });
+        }
+
+        // Handle service worker registration (if exists)
+        if ('serviceWorker' in navigator) {
+          window.addEventListener('load', () => {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+              if (registrations.length > 0) {
+                console.log('Service worker already registered');
+                // Optional: Unregister if causing issues
+                // registrations.forEach(registration => registration.unregister());
+              }
+            }).catch(error => {
+              console.log('Service worker check failed:', error);
+            });
+          });
         }
       });
     </script>
