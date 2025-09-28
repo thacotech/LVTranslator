@@ -2564,6 +2564,7 @@
 
           // History controls
           this.historyToggleBtn.addEventListener("click", () => {
+            console.log('History toggle button clicked');
             this.history.toggleHistoryPanel();
           });
           
@@ -3180,12 +3181,17 @@ ${text}`;
           this.maxItems = 50; // Maximum items to store
           this.storageKey = 'lvtranslator_history';
           this.history = this.loadHistory();
+          console.log('TranslationHistory initialized with', this.history.length, 'items');
         }
 
         // Save a new translation to history
         saveTranslation(sourceText, translatedText, direction) {
+          console.log('saveTranslation called:', { sourceText: sourceText.substring(0, 50), translatedText: translatedText.substring(0, 50), direction });
           try {
-            if (!sourceText || !translatedText) return;
+            if (!sourceText || !translatedText) {
+              console.log('Save translation skipped: missing source or translated text');
+              return;
+            }
 
             const timestamp = Date.now();
             const id = timestamp;
@@ -3339,32 +3345,44 @@ ${text}`;
         // Toggle history panel visibility
         toggleHistoryPanel() {
           const panel = document.getElementById('historyPanel');
-          const isVisible = panel.style.display !== 'none';
+          if (!panel) {
+            console.error('History panel element not found');
+            return;
+          }
+          
+          console.log('Toggle history panel - current items:', this.history.length);
+          console.log('localStorage available:', this.isStorageAvailable());
+          
+          const isVisible = !panel.classList.contains('hidden');
           
           if (isVisible) {
-            panel.style.display = 'none';
+            panel.classList.add('hidden');
           } else {
-            panel.style.display = 'block';
+            panel.classList.remove('hidden');
             this.renderHistory();
           }
         }
 
         // Render history items in the UI
         renderHistory() {
+          console.log('renderHistory called, items count:', this.history.length);
           const historyContent = document.getElementById('historyContent');
           const historyEmpty = document.getElementById('historyEmpty');
           
-          if (!historyContent || !historyEmpty) return;
+          if (!historyContent || !historyEmpty) {
+            console.error('History content or empty elements not found');
+            return;
+          }
 
           const historyItems = this.getHistory(20); // Show max 20 items
 
           if (historyItems.length === 0) {
             historyContent.innerHTML = '';
-            historyEmpty.style.display = 'block';
+            historyEmpty.classList.remove('hidden');
             return;
           }
 
-          historyEmpty.style.display = 'none';
+          historyEmpty.classList.add('hidden');
           historyContent.innerHTML = historyItems.map(item => this.createHistoryItemHTML(item)).join('');
 
           // Add event listeners to history items
@@ -3493,7 +3511,10 @@ ${text}`;
           this.translator.updateFontStyles();
 
           // Close history panel
-          document.getElementById('historyPanel').style.display = 'none';
+          const historyPanel = document.getElementById('historyPanel');
+          if (historyPanel) {
+            historyPanel.classList.add('hidden');
+          }
 
           // Show success message
           const t = this.translator.translations[this.translator.currentLang];
