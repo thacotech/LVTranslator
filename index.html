@@ -2208,10 +2208,6 @@
           this.currentLang = "en"; // Default interface language
           this.charLimit = 5000; // Character limit for translation
 
-          // Debounce timer for translation requests
-          this.debounceTimer = null;
-          this.debounceDelay = 500; // 500ms debounce delay
-
           // Language translations
           this.translations = {
             en: {
@@ -2638,7 +2634,7 @@
         attachEventListeners() {
           // Translation controls
           this.translateBtn.addEventListener("click", () =>
-            this.debouncedTranslateText()
+            this.translateText()
           );
           this.clearBtn.addEventListener("click", () => this.clearAll());
           this.copyBtn.addEventListener("click", () => this.copyTranslation());
@@ -2674,22 +2670,7 @@
           // Enter key support
           this.inputText.addEventListener("keydown", (e) => {
             if (e.ctrlKey && e.key === "Enter") {
-              this.debouncedTranslateText();
-            }
-          });
-
-          // Auto-translate on typing with debounce
-          this.inputText.addEventListener("input", () => {
-            const text = this.inputText.value.trim();
-            if (text.length > 0) {
-              this.debouncedTranslateText();
-            } else {
-              // Clear output if input is empty
-              this.outputText.value = "";
-              // Clear debounce timer if input is empty
-              if (this.debounceTimer) {
-                clearTimeout(this.debounceTimer);
-              }
+              this.translateText();
             }
           });
 
@@ -2911,19 +2892,6 @@
             this.showLoading(false);
             this.translateBtn.disabled = false;
           }
-        }
-
-        // Debounced translate function
-        debouncedTranslateText(customText = null) {
-          // Clear existing timer
-          if (this.debounceTimer) {
-            clearTimeout(this.debounceTimer);
-          }
-
-          // Set new timer
-          this.debounceTimer = setTimeout(() => {
-            this.translateText(customText);
-          }, this.debounceDelay);
         }
 
         async callGeminiAPI(text) {
