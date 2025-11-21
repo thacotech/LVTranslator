@@ -1,8 +1,8 @@
 # LVTranslator
 
-LVTranslator là một dự án hỗ trợ dịch thuật hoặc chuyển đổi ngôn ngữ, có thể sử dụng font chữ Phetsarath OT để hiển thị tiếng Lào.
+LVTranslator is a translation and language conversion project that supports Lao language display using the Phetsarath OT font.
 
-## Cấu trúc dự án
+## Project Structure
 
 ```
 LVTranslator/
@@ -12,22 +12,22 @@ LVTranslator/
   └── README.md
 ```
 
-- `front/Phetsarath OT.ttf`: Font chữ Phetsarath OT dùng cho tiếng Lào.
-- `index.html`: Tệp giao diện chính của dự án.
-- `README.md`: Tài liệu hướng dẫn này.
+- `front/Phetsarath OT.ttf`: Phetsarath OT font for Lao language display.
+- `index.html`: Main interface file of the project.
+- `README.md`: This documentation file.
 
-## Hướng dẫn sử dụng
+## Usage Guide
 
-1. Tải toàn bộ mã nguồn về máy.
-2. Mở file `index.html` bằng trình duyệt web để sử dụng ứng dụng.
-3. Đảm bảo font Phetsarath OT đã được liên kết đúng trong file HTML để hiển thị tiếng Lào chuẩn xác.
+1. Download the entire source code to your computer.
+2. Open the `index.html` file in a web browser to use the application.
+3. Ensure the Phetsarath OT font is properly linked in the HTML file for accurate Lao language display.
 
-## Đóng góp
+## Contributing
 
-Nếu bạn muốn đóng góp cho dự án, hãy fork repository, tạo pull request hoặc liên hệ với tác giả.
+If you would like to contribute to this project, please fork the repository, create a pull request, or contact the author.
 
-## Giấy phép
+## License
 
-Dự án này sử dụng font Phetsarath OT, vui lòng kiểm tra giấy phép sử dụng font trước khi phân phối lại.
+This project uses the Phetsarath OT font. Please check the font license before redistribution.
 
 ---
