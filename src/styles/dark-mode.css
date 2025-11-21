@@ -1,0 +1,177 @@
+/**
+ * Dark Mode Styles
+ */
+
+/* DARK MODE BODY STYLES */
+body.dark-mode {
+  background: linear-gradient(
+    135deg,
+    var(--color-background) 0%,
+    hsl(220, 15%, 18%) 100%
+  );
+}
+
+body.dark-mode .container {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+  box-shadow: var(--shadow-xl);
+}
+
+body.dark-mode .header h1 {
+  color: var(--color-text);
+  background: linear-gradient(
+    45deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+body.dark-mode .header p {
+  color: var(--color-text-secondary);
+}
+
+/* Dark Mode Button Styles */
+body.dark-mode .darkmode-toggle {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .lang-btn {
+  background: var(--color-surface-elevated);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .lang-btn:hover {
+  background: var(--color-primary);
+  color: var(--color-surface);
+  border-color: var(--color-primary);
+}
+
+body.dark-mode .lang-btn.active {
+  background: var(--color-success);
+  color: var(--color-surface);
+  border-color: var(--color-success);
+}
+
+body.dark-mode .lang-btn.active:hover {
+  background: var(--color-success-light);
+  border-color: var(--color-success-light);
+}
+
+/* Dark Mode Panels */
+body.dark-mode .input-panel,
+body.dark-mode .output-panel,
+body.dark-mode .file-upload-section {
+  background: #23272b;
+  border-color: #444;
+}
+
+body.dark-mode .panel-title,
+body.dark-mode .file-upload-section h3 {
+  color: #e0e0e0;
+}
+
+/* Dark Mode Language Selector */
+body.dark-mode .language-selector {
+  background: #23272b;
+  color: #b993d6;
+  border-color: #b993d6;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23b993d6%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.4-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E");
+}
+
+body.dark-mode .language-selector:hover {
+  background: #b993d6;
+  color: #23272b;
+}
+
+/* Dark Mode Text Areas */
+body.dark-mode .text-input,
+body.dark-mode .text-output {
+  background: #181a1b;
+  color: #f1f1f1;
+  border-color: #444;
+}
+
+body.dark-mode .text-output {
+  border-color: #28a745;
+}
+
+/* Dark Mode Buttons */
+body.dark-mode .controls .translate-btn {
+  background: linear-gradient(45deg, #218838, #13896b);
+}
+
+body.dark-mode .controls .clear-btn {
+  background: linear-gradient(45deg, #b52a37, #fd7e14);
+}
+
+body.dark-mode .controls .copy-btn {
+  background: linear-gradient(45deg, #4b2c7c, #e83e8c);
+}
+
+body.dark-mode .file-input-btn {
+  background: linear-gradient(45deg, #17a2b8, #764ba2);
+}
+
+/* Dark Mode File Info */
+body.dark-mode .file-info {
+  background: #23272b;
+  color: #eee;
+  border-color: #444;
+}
+
+body.dark-mode .extracted-text {
+  background: #181a1b;
+  color: #f1f1f1;
+  border-color: #17a2b8;
+}
+
+body.dark-mode #extractedContent {
+  color: #f1f1f1;
+}
+
+/* Dark Mode Messages */
+body.dark-mode .success-message {
+  background: #233524;
+  color: #b6fcb6;
+  border-color: #28a745;
+}
+
+body.dark-mode .error-message {
+  background: #3a1a1a;
+  color: #ffb3b3;
+  border-color: #b52a37;
+}
+
+/* Dark Mode Copy Button */
+body.dark-mode .copy-translated-btn {
+  background: linear-gradient(45deg, #4b2c7c, #e83e8c);
+  color: #fff;
+}
+
+body.dark-mode .copy-translated-btn:hover {
+  background: linear-gradient(45deg, #218838, #13896b);
+}
+
+/* Dark Mode Switch Button */
+body.dark-mode .switch-btn {
+  background: #23272b;
+  color: #b993d6;
+  border-color: #b993d6;
+}
+
+body.dark-mode .switch-btn:hover {
+  background: #b993d6;
+  color: #23272b;
+}
+
+/* Dark Mode Lao Text */
+body.dark-mode .translated-text-content.lao-text {
+  color: #f1f1f1;
+}
+

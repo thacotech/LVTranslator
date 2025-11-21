@@ -1,0 +1,141 @@
+/**
+ * Toast Messages Styles
+ * For error, success, and info notifications
+ */
+
+.error-toast {
+  position: fixed;
+  top: var(--spacing-2xl);
+  right: var(--spacing-2xl);
+  background: white;
+  border-left: 4px solid var(--color-error);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: var(--spacing-lg);
+  max-width: 400px;
+  z-index: 9999;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all var(--duration-normal) var(--ease-out);
+}
+
+.error-toast.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+}
+
+.error-icon {
+  font-size: var(--font-size-2xl);
+  flex-shrink: 0;
+}
+
+.error-text {
+  flex: 1;
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-normal);
+}
+
+.error-close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xl);
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color var(--duration-fast) var(--ease-in-out);
+}
+
+.error-close:hover {
+  color: var(--color-error);
+}
+
+/* Success Toast */
+.success-toast {
+  border-left-color: var(--color-success);
+}
+
+.success-toast .error-icon {
+  color: var(--color-success);
+}
+
+/* Warning Toast */
+.warning-toast {
+  border-left-color: var(--color-warning);
+}
+
+.warning-toast .error-icon {
+  color: var(--color-warning);
+}
+
+/* Info Toast */
+.info-toast {
+  border-left-color: var(--color-primary);
+}
+
+.info-toast .error-icon {
+  color: var(--color-primary);
+}
+
+/* Dark Mode Toasts */
+body.dark-mode .error-toast,
+body.dark-mode .success-toast,
+body.dark-mode .warning-toast,
+body.dark-mode .info-toast {
+  background: var(--color-surface-elevated);
+  border-color: var(--color-border);
+}
+
+body.dark-mode .error-text {
+  color: var(--color-text);
+}
+
+body.dark-mode .error-close {
+  color: var(--color-text-muted);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .error-toast {
+    top: auto;
+    bottom: var(--spacing-lg);
+    right: var(--spacing-sm);
+    left: var(--spacing-sm);
+    max-width: none;
+    transform: translateY(100%);
+  }
+
+  .error-toast.show {
+    transform: translateY(0);
+  }
+}
+
+/* Multiple Toasts Stacking */
+.error-toast:nth-child(2) {
+  top: calc(var(--spacing-2xl) + 80px);
+}
+
+.error-toast:nth-child(3) {
+  top: calc(var(--spacing-2xl) + 160px);
+}
+
+@media (max-width: 768px) {
+  .error-toast:nth-child(2) {
+    bottom: calc(var(--spacing-lg) + 80px);
+    top: auto;
+  }
+
+  .error-toast:nth-child(3) {
+    bottom: calc(var(--spacing-lg) + 160px);
+    top: auto;
+  }
+}
+

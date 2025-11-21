@@ -1,0 +1,129 @@
+/**
+ * CSS Variables and Design Tokens
+ * Centralized design system variables
+ */
+
+@font-face {
+  font-family: "Phetsarath OT";
+  src: url("../../front/Phetsarath OT.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ===== DESIGN SYSTEM FOUNDATION ===== */
+:root {
+  /* Modern Color Palette */
+  --primary-hue: 230;
+  --secondary-hue: 280;
+
+  /* Light Theme Colors */
+  --color-primary: hsl(var(--primary-hue), 70%, 65%);
+  --color-primary-light: hsl(var(--primary-hue), 70%, 75%);
+  --color-primary-dark: hsl(var(--primary-hue), 70%, 55%);
+  --color-secondary: hsl(var(--secondary-hue), 60%, 60%);
+  --color-secondary-light: hsl(var(--secondary-hue), 60%, 70%);
+
+  --color-background: hsl(0, 0%, 98%);
+  --color-surface: hsl(0, 0%, 100%);
+  --color-surface-elevated: hsl(0, 0%, 97%);
+  --color-text: hsl(0, 0%, 20%);
+  --color-text-secondary: hsl(0, 0%, 45%);
+  --color-text-muted: hsl(0, 0%, 60%);
+
+  --color-border: hsl(0, 0%, 88%);
+  --color-border-light: hsl(0, 0%, 92%);
+  --color-border-focus: var(--color-primary);
+
+  /* Semantic Colors */
+  --color-success: hsl(142, 71%, 45%);
+  --color-success-light: hsl(142, 71%, 55%);
+  --color-warning: hsl(38, 92%, 50%);
+  --color-error: hsl(0, 84%, 60%);
+
+  /* Spacing System (4px base) */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-md: 0.75rem; /* 12px */
+  --spacing-lg: 1rem; /* 16px */
+  --spacing-xl: 1.5rem; /* 24px */
+  --spacing-2xl: 2rem; /* 32px */
+  --spacing-3xl: 3rem; /* 48px */
+  --spacing-4xl: 4rem; /* 64px */
+
+  /* Typography Scale */
+  --font-size-xs: 0.75rem; /* 12px */
+  --font-size-sm: 0.875rem; /* 14px */
+  --font-size-base: 1rem; /* 16px */
+  --font-size-lg: 1.125rem; /* 18px */
+  --font-size-xl: 1.25rem; /* 20px */
+  --font-size-2xl: 1.5rem; /* 24px */
+  --font-size-3xl: 1.875rem; /* 30px */
+  --font-size-4xl: 2.25rem; /* 36px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem; /* 6px */
+  --radius-md: 0.5rem; /* 8px */
+  --radius-lg: 0.75rem; /* 12px */
+  --radius-xl: 1rem; /* 16px */
+  --radius-2xl: 1.5rem; /* 24px */
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --duration-slow: 350ms;
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+
+  /* Responsive Breakpoints */
+  --breakpoint-mobile: 320px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+  --breakpoint-wide: 1440px;
+}
+
+/* Dark Theme Colors */
+[data-theme="dark"] {
+  --color-primary: hsl(var(--primary-hue), 50%, 70%);
+  --color-primary-light: hsl(var(--primary-hue), 50%, 80%);
+  --color-primary-dark: hsl(var(--primary-hue), 50%, 60%);
+  --color-secondary: hsl(var(--secondary-hue), 40%, 70%);
+  --color-secondary-light: hsl(var(--secondary-hue), 40%, 80%);
+
+  --color-background: hsl(220, 15%, 12%);
+  --color-surface: hsl(220, 15%, 16%);
+  --color-surface-elevated: hsl(220, 15%, 20%);
+  --color-text: hsl(0, 0%, 90%);
+  --color-text-secondary: hsl(0, 0%, 70%);
+  --color-text-muted: hsl(0, 0%, 50%);
+
+  --color-border: hsl(220, 15%, 25%);
+  --color-border-light: hsl(220, 15%, 22%);
+  --color-border-focus: var(--color-primary);
+
+  --color-success: hsl(142, 51%, 55%);
+  --color-success-light: hsl(142, 51%, 65%);
+  --color-warning: hsl(38, 82%, 60%);
+  --color-error: hsl(0, 74%, 70%);
+}
+
