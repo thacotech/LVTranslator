@@ -2217,6 +2217,10 @@
           this.targetLanguage = "lo"; // Default target
           this.currentLang = "en"; // Default interface language
           this.charLimit = 5000; // Character limit for translation
+          
+          // Debounce timer for translation button
+          this.translateDebounceTimer = null;
+          this.translateDebounceDelay = 500; // 500ms delay
 
           // Language translations
           this.translations = {
@@ -2642,9 +2646,9 @@
         }
 
         attachEventListeners() {
-          // Translation controls
+          // Translation controls with debounce
           this.translateBtn.addEventListener("click", () =>
-            this.translateText()
+            this.debouncedTranslate()
           );
           this.clearBtn.addEventListener("click", () => this.clearAll());
           this.copyBtn.addEventListener("click", () => this.copyTranslation());
@@ -2826,6 +2830,30 @@
           if (this.targetLanguage === "lo") {
             this.outputText.classList.add("lao-text");
           }
+        }
+
+        // Debounced translate method to prevent multiple rapid clicks
+        debouncedTranslate(customText = null) {
+          // Clear existing timer
+          if (this.translateDebounceTimer) {
+            clearTimeout(this.translateDebounceTimer);
+          }
+
+          // Show visual feedback that button is waiting
+          const originalText = this.translateBtn.innerHTML;
+          this.translateBtn.innerHTML = '<span>⏳</span> Please wait...';
+          this.translateBtn.disabled = true;
+
+          // Set new timer
+          this.translateDebounceTimer = setTimeout(() => {
+            // Reset button
+            this.translateBtn.innerHTML = originalText;
+            this.translateBtn.disabled = false;
+            
+            // Execute translation
+            this.translateText(customText);
+            this.translateDebounceTimer = null;
+          }, this.translateDebounceDelay);
         }
 
         async translateText(customText = null) {
