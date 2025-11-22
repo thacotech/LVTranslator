@@ -31,6 +31,7 @@ class EnhancedLVTranslator {
     this.initComponents();
     this.initUI();
     this.attachEventListeners();
+    this.syncInitialLanguages();
     
     console.log('[App] Enhanced LVTranslator initialized with all features');
   }
@@ -407,9 +408,31 @@ class EnhancedLVTranslator {
   }
 
   /**
+   * Sync initial languages on page load
+   */
+  syncInitialLanguages() {
+    const sourceLangSelector = document.getElementById('sourceLangSelector');
+    if (sourceLangSelector && this.components.stt) {
+      const currentLang = sourceLangSelector.value; // e.g., 'vi', 'lo', 'en'
+      this.components.stt.setLanguageFromCode(currentLang);
+      console.log(`[App] Initial STT language synced to: ${currentLang}`);
+    }
+  }
+
+  /**
    * Attach event listeners
    */
   attachEventListeners() {
+    // Auto-sync Input Language with Voice Input Language
+    const sourceLangSelector = document.getElementById('sourceLangSelector');
+    if (sourceLangSelector && this.components.stt) {
+      sourceLangSelector.addEventListener('change', (e) => {
+        const selectedLang = e.target.value; // e.g., 'vi', 'lo', 'en'
+        this.components.stt.setLanguageFromCode(selectedLang);
+        console.log(`[App] Auto-synced STT language to: ${selectedLang}`);
+      });
+    }
+
     // Listen for translations to save to memory automatically
     document.addEventListener('translation-complete', (e) => {
       const { source, target, sourceLang, targetLang } = e.detail;

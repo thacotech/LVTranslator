@@ -294,6 +294,25 @@ class STTComponent {
   }
 
   /**
+   * Set language from short code (for auto-sync with input language selector)
+   * @param {string} shortCode - Short language code (e.g., 'vi', 'lo', 'en')
+   */
+  setLanguageFromCode(shortCode) {
+    const langMap = {
+      'vi': 'vi-VN',
+      'lo': 'lo-LA',
+      'en': 'en-US'
+    };
+    
+    const fullLangCode = langMap[shortCode] || 'en-US';
+    const langSelect = document.getElementById('sttLangSelect');
+    if (langSelect) {
+      langSelect.value = fullLangCode;
+      this.updateLanguage(fullLangCode);
+    }
+  }
+
+  /**
    * Show browser warning
    */
   showBrowserWarning() {
