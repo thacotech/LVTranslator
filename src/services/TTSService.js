@@ -221,6 +221,66 @@ class TTSService {
   }
 
   /**
+   * Check if native voice is available for language
+   * @param {string} lang - Language code (vi-VN, lo-LA, en-US)
+   * @returns {boolean}
+   */
+  hasNativeVoiceForLanguage(lang) {
+    if (!this.voices || this.voices.length === 0) {
+      return false;
+    }
+
+    const langPrefix = lang.split('-')[0].toLowerCase();
+    
+    // Try exact match
+    let voice = this.voices.find(v => v.lang === lang);
+    if (voice) return true;
+
+    // Try partial match
+    voice = this.voices.find(v => v.lang.toLowerCase().startsWith(langPrefix));
+    if (voice) return true;
+
+    // For Vietnamese
+    if (lang.includes('vi')) {
+      voice = this.voices.find(v => 
+        v.lang.toLowerCase().includes('vi') || 
+        v.name.toLowerCase().includes('vietnamese')
+      );
+      if (voice) return true;
+    }
+
+    // For Lao
+    if (lang.includes('lo')) {
+      voice = this.voices.find(v => 
+        v.lang.toLowerCase().includes('lo') ||
+        v.name.toLowerCase().includes('lao')
+      );
+      if (voice) return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * Get language name from code
+   * @param {string} lang - Language code
+   * @returns {string}
+   */
+  getLanguageName(lang) {
+    const langMap = {
+      'vi': 'Vietnamese',
+      'vi-VN': 'Vietnamese',
+      'lo': 'Lao',
+      'lo-LA': 'Lao',
+      'en': 'English',
+      'en-US': 'English'
+    };
+    
+    const langPrefix = lang.split('-')[0].toLowerCase();
+    return langMap[lang] || langMap[langPrefix] || lang;
+  }
+
+  /**
    * Update TTS settings
    * @param {Object} settings - New settings {rate, pitch, volume, voice}
    */
