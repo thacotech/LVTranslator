@@ -93,16 +93,12 @@ class TTSComponent {
         <div class="tts-language-warning" id="ttsLanguageWarning" style="display: none;">
           <div class="tts-warning-content">
             <span class="icon">⚠️</span>
-            <div class="tts-warning-text">
-              <strong id="ttsWarningTitle">Voice Not Available</strong>
-              <p id="ttsWarningMessage"></p>
-            </div>
+            <p id="ttsWarningMessage"></p>
           </div>
           <div class="tts-warning-actions">
             <button class="tts-btn tts-btn-secondary" id="ttsWarningClose">Cancel</button>
             <button class="tts-btn tts-btn-primary" id="ttsWarningContinue">Continue with English</button>
           </div>
-          <a href="./TTS_VOICE_GUIDE.md" target="_blank" class="tts-help-link">📖 How to install language packs</a>
         </div>
       </div>
     `;
@@ -399,11 +395,9 @@ class TTSComponent {
       const continueBtn = document.getElementById('ttsWarningContinue');
       const messageEl = document.getElementById('ttsWarningMessage');
 
-      // Set warning message
+      // Set warning message - short and simple
       messageEl.innerHTML = `
-        <strong>${langName}</strong> voice is not available on your system.<br>
-        Only <strong>English</strong> voice is currently supported.<br><br>
-        Would you like to continue with English pronunciation, or cancel?
+        <strong>${langName}</strong> voice not available. Only <strong>English</strong> is supported.
       `;
 
       // Show warning
