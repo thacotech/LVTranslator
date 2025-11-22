@@ -15,9 +15,30 @@
 /* 4. Toast Notifications */
 @import './toasts.css';
 
-/* 5. Dark Mode Styles */
+/* 5. TTS Component Styles */
+@import './tts.css';
+
+/* 5.1. STT Component Styles */
+@import './stt.css';
+
+/* 5.2. Translation Memory Styles */
+@import './translation-memory.css';
+
+/* 5.3. Glossary Styles */
+@import './glossary.css';
+
+/* 5.4. Keyboard Shortcuts Styles */
+@import './keyboard-shortcuts.css';
+
+/* 5.5. Mobile Enhancements */
+@import './mobile-enhancements.css';
+
+/* 5.2. Translation Memory Styles */
+@import './memory.css';
+
+/* 6. Dark Mode Styles */
 @import './dark-mode.css';
 
-/* 6. Responsive Styles (should be last) */
+/* 7. Responsive Styles (should be last) */
 @import './responsive.css';
 

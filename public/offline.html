@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - LVTranslator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .offline-container {
+      text-align: center;
+      max-width: 500px;
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    }
+
+    .offline-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    h1 {
+      font-size: 32px;
+      color: #333;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .retry-btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .retry-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    .offline-info {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 10px;
+    }
+
+    .offline-info h3 {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 12px;
+    }
+
+    .offline-info ul {
+      text-align: left;
+      list-style: none;
+      padding: 0;
+    }
+
+    .offline-info li {
+      padding: 8px 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .offline-info li:before {
+      content: "✓ ";
+      color: #667eea;
+      font-weight: bold;
+      margin-right: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <div class="offline-icon">📡</div>
+    <h1>You're Offline</h1>
+    <p>
+      It looks like you've lost your internet connection. 
+      Don't worry, some features are still available offline!
+    </p>
+    
+    <a href="/" class="retry-btn" onclick="location.reload(); return false;">
+      Try Again
+    </a>
+
+    <div class="offline-info">
+      <h3>Available Offline:</h3>
+      <ul>
+        <li>View translation history</li>
+        <li>Access saved translations</li>
+        <li>Browse glossary terms</li>
+        <li>Review translation memory</li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    // Auto-retry when back online
+    window.addEventListener('online', () => {
+      console.log('Back online! Redirecting...');
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
+    });
+
+    // Show connection status
+    if (navigator.onLine) {
+      console.log('Already online, redirecting...');
+      window.location.href = '/';
+    }
+  </script>
+</body>
+</html>
+
