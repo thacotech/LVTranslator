@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "🌐 Multi-language Translator",
-    "subtitle": "Translate between Vietnamese, Lao, and English using AI"
+    "subtitle": "Translate between Vietnamese, Lao, and English using AI",
+    "version": "Version"
   },
   "languages": {
     "vietnamese": "Vietnamese",
@@ -71,6 +72,9 @@
     "description": "View and manage your translation history",
     "translationHistory": "📚 Translation History",
     "recentTranslations": "Recent Translations",
+    "recent": "Recent",
+    "favorites": "Favorites",
+    "search": "Search",
     "clearAllHistory": "🗑️ Clear All",
     "noHistoryYet": "No translation history yet",
     "historySubtext": "Your translations will appear here",
@@ -354,7 +358,13 @@
     "translate": "Translate",
     "history": "History", 
     "settings": "Settings",
-    "fileUpload": "File Upload"
+    "fileUpload": "File Upload",
+    "tools": "Tools"
+  },
+  "language": {
+    "english": "English",
+    "vietnamese": "Vietnamese", 
+    "lao": "Lao"
   },
   "sidebar": {
     "navigation": "Navigation",
@@ -378,5 +388,11 @@
     "textToSpeech": "Text to Speech",
     "speechToText": "Speech to Text",
     "batchTranslate": "Batch Translate"
+  },
+  "confirm": {
+    "clearHistory": {
+      "title": "Clear History",
+      "content": "Are you sure you want to clear all translation history?"
+    }
   }
 }

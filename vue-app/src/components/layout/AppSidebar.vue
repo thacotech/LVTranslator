@@ -208,7 +208,6 @@ import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import {
-  Layout as ALayout,
   Menu as AMenu,
   Button as AButton,
   Divider as ADivider,
@@ -235,7 +234,6 @@ import {
 } from '@ant-design/icons-vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useTranslationStore } from '@/stores/translation'
-import type { Language } from '@/types'
 
 const router = useRouter()
 const route = useRoute()
@@ -262,8 +260,8 @@ const mostUsedLanguage = computed(() => {
   
   const languageCounts: { [key: string]: number } = {}
   translationStore.history.forEach(translation => {
-    const pair = `${translation.sourceLanguage}-${translation.targetLanguage}`
-    languageCounts[pair] = (languageCounts[pair] || 0) + 1
+    const direction = translation.direction
+    languageCounts[direction] = (languageCounts[direction] || 0) + 1
   })
   
   const mostUsed = Object.entries(languageCounts).reduce((a, b) => 

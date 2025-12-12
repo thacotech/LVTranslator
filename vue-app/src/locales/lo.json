@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "🌐 ແປພາສາຫຼາຍພາສາ",
-    "subtitle": "ແປພາສາລະຫວ່າງ ຫວຽດນາມ, ລາວ, ແລະ ອັງກິດ ໂດຍໃຊ້ AI"
+    "subtitle": "ແປພາສາລະຫວ່າງ ຫວຽດນາມ, ລາວ, ແລະ ອັງກິດ ໂດຍໃຊ້ AI",
+    "version": "ເວີຊັນ"
   },
   "languages": {
     "vietnamese": "ພາສາຫວຽດນາມ",
@@ -64,6 +65,9 @@
   "history": {
     "translationHistory": "📚 ປະຫວັດການແປພາສາ",
     "recentTranslations": "ການແປພາສາຫຼ້າສຸດ",
+    "recent": "ຫຼ້າສຸດ",
+    "favorites": "ທີ່ມັກ",
+    "search": "ຄົ້ນຫາ",
     "clearAllHistory": "🗑️ ລຶບທັງໝົດ",
     "noHistoryYet": "ຍັງບໍ່ມີປະຫວັດການແປພາສາ",
     "historySubtext": "ການແປພາສາຂອງເຈົ້າຈະປາກົດທີ່ນີ້",
@@ -175,7 +179,8 @@
     "close": "ປິດ",
     "retry": "ລອງໃໝ່",
     "loading": "ກຳລັງໂຫລດ...",
-    "confirm": "ຢືນຢັນ"
+    "confirm": "ຢືນຢັນ",
+    "never": "ບໍ່ເຄີຍ"
   },
   "notifications": {
     "success": {
@@ -269,5 +274,46 @@
   },
   "footer": {
     "allRightsReserved": "ສະຫງວນລິຂະສິດທັງໝົດ."
+  },
+  "nav": {
+    "translate": "ແປພາສາ",
+    "history": "ປະຫວັດ", 
+    "settings": "ການຕັ້ງຄ່າ",
+    "fileUpload": "ອັບໂຫລດໄຟລ໌",
+    "tools": "ເຄື່ອງມື"
+  },
+  "language": {
+    "english": "ພາສາອັງກິດ",
+    "vietnamese": "ພາສາຫວຽດນາມ", 
+    "lao": "ພາສາລາວ"
+  },
+  "sidebar": {
+    "navigation": "ການນຳທາງ",
+    "collapse": "ຫຍໍ້ Sidebar",
+    "expand": "ຂະຫຍາຍ Sidebar",
+    "quickStats": "ສະຖິຕິດ່ວນ",
+    "quickActions": "ການກະທຳດ່ວນ",
+    "lastUpdate": "ອັບເດດຄັ້ງສຸດທ້າຍ"
+  },
+  "stats": {
+    "totalTranslations": "ການແປພາສາທັງໝົດ",
+    "todayTranslations": "ການແປພາສາມື້ນີ້", 
+    "favoriteLanguage": "ພາສາທີ່ມັກ"
+  },
+  "actions": {
+    "newTranslation": "ການແປພາສາໃໝ່",
+    "clearHistory": "ລຶບປະຫວັດ",
+    "exportHistory": "ສົ່ງອອກປະຫວັດ"
+  },
+  "tools": {
+    "textToSpeech": "ແປຂໍ້ຄວາມເປັນສຽງ",
+    "speechToText": "ແປສຽງເປັນຂໍ້ຄວາມ",
+    "batchTranslate": "ແປພາສາເປັນກຸ່ມ"
+  },
+  "confirm": {
+    "clearHistory": {
+      "title": "ລຶບປະຫວັດ",
+      "content": "ເຈົ້າແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບປະຫວັດການແປພາສາທັງໝົດ?"
+    }
   }
 }

@@ -1,7 +1,8 @@
 {
   "app": {
     "title": "🌐 Dịch Thuật Đa Ngôn Ngữ",
-    "subtitle": "Dịch giữa Tiếng Việt, Tiếng Lào, và Tiếng Anh bằng AI"
+    "subtitle": "Dịch giữa Tiếng Việt, Tiếng Lào, và Tiếng Anh bằng AI",
+    "version": "Phiên Bản"
   },
   "languages": {
     "vietnamese": "Tiếng Việt",
@@ -68,6 +69,9 @@
     "description": "Xem và quản lý lịch sử dịch thuật của bạn",
     "translationHistory": "📚 Lịch Sử Dịch Thuật",
     "recentTranslations": "Bản Dịch Gần Đây",
+    "recent": "Gần Đây",
+    "favorites": "Yêu Thích",
+    "search": "Tìm Kiếm",
     "loading": "Đang tải lịch sử...",
     "loadComponent": "📚 Tải Lịch Sử Dịch Thuật",
     "clearAllHistory": "🗑️ Xóa Tất Cả",
@@ -181,7 +185,8 @@
     "close": "Đóng",
     "retry": "Thử Lại",
     "loading": "Đang tải...",
-    "confirm": "Xác Nhận"
+    "confirm": "Xác Nhận",
+    "never": "Chưa Bao Giờ"
   },
   "notifications": {
     "success": {
@@ -276,5 +281,46 @@
   },
   "footer": {
     "allRightsReserved": "Bảo lưu mọi quyền."
+  },
+  "nav": {
+    "translate": "Dịch Thuật",
+    "history": "Lịch Sử", 
+    "settings": "Cài Đặt",
+    "fileUpload": "Tải Tệp Lên",
+    "tools": "Công Cụ"
+  },
+  "language": {
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt", 
+    "lao": "Tiếng Lào"
+  },
+  "sidebar": {
+    "navigation": "Điều Hướng",
+    "collapse": "Thu Gọn Sidebar",
+    "expand": "Mở Rộng Sidebar",
+    "quickStats": "Thống Kê Nhanh",
+    "quickActions": "Hành Động Nhanh",
+    "lastUpdate": "Cập Nhật Cuối"
+  },
+  "stats": {
+    "totalTranslations": "Tổng Số Bản Dịch",
+    "todayTranslations": "Bản Dịch Hôm Nay", 
+    "favoriteLanguage": "Ngôn Ngữ Yêu Thích"
+  },
+  "actions": {
+    "newTranslation": "Bản Dịch Mới",
+    "clearHistory": "Xóa Lịch Sử",
+    "exportHistory": "Xuất Lịch Sử"
+  },
+  "tools": {
+    "textToSpeech": "Chuyển Văn Bản Thành Giọng Nói",
+    "speechToText": "Chuyển Giọng Nói Thành Văn Bản",
+    "batchTranslate": "Dịch Hàng Loạt"
+  },
+  "confirm": {
+    "clearHistory": {
+      "title": "Xóa Lịch Sử",
+      "content": "Bạn có chắc chắn muốn xóa toàn bộ lịch sử dịch thuật?"
+    }
   }
 }
