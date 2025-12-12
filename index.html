@@ -410,6 +410,11 @@
         color: #ffb3b3;
         border-color: #b52a37;
       }
+      body.dark-mode .warning-message {
+        background: #3a3419;
+        color: #ffd700;
+        border-color: #ffc107;
+      }
       body.dark-mode .copy-translated-btn {
         background: linear-gradient(45deg, #4b2c7c, #e83e8c);
         color: #fff;
@@ -780,6 +785,15 @@
         border-radius: 8px;
         margin: 10px 0;
         border: 1px solid #c3e6cb;
+      }
+
+      .warning-message {
+        background: #fff3cd;
+        color: #856404;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 10px 0;
+        border: 1px solid #ffeaa7;
       }
 
       /* Cập nhật class cho text tiếng Lào */
@@ -1913,6 +1927,12 @@
     </style>
   </head>
   <body>
+    <!-- Maintenance Mode Redirect -->
+    <script>
+      // Uncomment the line below to enable maintenance mode
+      window.location.href = 'maintenance.html';
+    </script>
+    
     <div id="privacy-policy-modal" class="privacy-modal">
       <div class="privacy-modal-content">
         <h2>Chính sách Bảo mật & Điều khoản Sử dụng</h2>
@@ -2261,6 +2281,10 @@
                 "API key is not configured. Please set your Gemini API key in the code.",
               translationCompleted: "Translation completed successfully!",
               translationFailed: "Translation failed:",
+              quotaExceeded: "API quota exceeded. Please check your plan and billing details.",
+              retryingIn: "Retrying in",
+              seconds: "seconds",
+              quotaErrorRetry: "Quota limit reached. Will retry automatically in",
               noTranslationToCopy: "No translation to copy.",
               translationCopied: "Translation copied to clipboard!",
               textExtractedSuccessfully: "Text extracted successfully!",
@@ -2323,6 +2347,10 @@
                 "API key chưa được cấu hình. Vui lòng đặt Gemini API key trong code.",
               translationCompleted: "Đã dịch thành công!", // Gợi ý
               translationFailed: "Dịch thất bại:", // Gợi ý
+              quotaExceeded: "Đã vượt quá hạn mức API. Vui lòng kiểm tra gói và chi tiết thanh toán.",
+              retryingIn: "Đang thử lại sau",
+              seconds: "giây",
+              quotaErrorRetry: "Đã đạt giới hạn hạn mức. Sẽ tự động thử lại sau",
               noTranslationToCopy: "Không có bản dịch để sao chép.",
               translationCopied: "Đã sao chép bản dịch vào clipboard!",
               textExtractedSuccessfully: "Trích xuất văn bản thành công!",
@@ -2387,6 +2415,10 @@
                 "API key ຍັງບໍ່ໄດ້ຕັ້ງຄ່າ. ກະລຸນາຕັ້ງ Gemini API key ໃນ code.",
               translationCompleted: "ການແປພາສາສຳເລັດແລ້ວ!", // Gợi ý
               translationFailed: "ການແປພາສາລົ້ມເຫລວ:",
+              quotaExceeded: "ເກີນຂີດຈຳກັດ API ແລ້ວ. ກະລຸນາກວດເບິ່ງແຜນ ແລະ ລາຍລະອຽດການຊຳລະເງິນ.",
+              retryingIn: "ກຳລັງລອງອີກຄັ້ງໃນ",
+              seconds: "ວິນາທີ",
+              quotaErrorRetry: "ເຖິງຂີດຈຳກັດຮອດແລ້ວ. ຈະລອງອີກຄັ້ງອັດຕະໂນມັດໃນ",
               noTranslationToCopy: "ບໍ່ມີການແປພາສາໃຫ້ຄັດລອກ.",
               translationCopied: "ຄັດລອກການແປພາສາໄປ clipboard ແລ້ວ!",
               textExtractedSuccessfully: "ສະກັດຂໍ້ຄວາມສຳເລັດແລ້ວ!", // Gợi ý (tùy chọn)
@@ -2932,7 +2964,35 @@
           }
         }
 
-        async callGeminiAPI(text) {
+        /**
+         * Extract retry time from error message
+         * @param {string} errorMessage - Error message from API
+         * @returns {number|null} - Retry time in milliseconds, or null if not found
+         */
+        extractRetryTime(errorMessage) {
+          // Look for "Please retry in X.XXXXs" pattern
+          const retryMatch = errorMessage.match(/retry in ([\d.]+)s/i);
+          if (retryMatch) {
+            const seconds = parseFloat(retryMatch[1]);
+            return Math.ceil(seconds * 1000); // Convert to milliseconds and round up
+          }
+          return null;
+        }
+
+        /**
+         * Check if error is a quota error
+         * @param {string} errorMessage - Error message from API
+         * @returns {boolean} - True if it's a quota error
+         */
+        isQuotaError(errorMessage) {
+          return (
+            errorMessage.includes("quota") ||
+            errorMessage.includes("Quota exceeded") ||
+            errorMessage.includes("exceeded your current quota")
+          );
+        }
+
+        async callGeminiAPI(text, retryCount = 0, maxRetries = 3) {
           const t = this.translations["en"]; // Use English for API prompt
           const languages = { vi: t.vietnamese, lo: t.lao, en: t.english };
 
@@ -2943,62 +3003,112 @@
 
 ${text}`;
 
-          const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({
-                contents: [
-                  {
-                    parts: [
-                      {
-                        text: prompt,
-                      },
-                    ],
-                  },
-                ],
-                generationConfig: {
-                  temperature: 0.1,
-                  maxOutputTokens: 2000, // Tăng limit cho text dài
-                  topP: 0.8,
-                  topK: 10,
+          try {
+            const response = await fetch(
+              `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${this.apiKey}`,
+              {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
                 },
-              }),
-            }
-          );
-
-          if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(
-              errorData.error?.message ||
-                `API request failed with status ${response.status}`
+                body: JSON.stringify({
+                  contents: [
+                    {
+                      parts: [
+                        {
+                          text: prompt,
+                        },
+                      ],
+                    },
+                  ],
+                  generationConfig: {
+                    temperature: 0.1,
+                    maxOutputTokens: 2000, // Tăng limit cho text dài
+                    topP: 0.8,
+                    topK: 10,
+                  },
+                }),
+              }
             );
+
+            if (!response.ok) {
+              const errorData = await response.json().catch(() => ({}));
+              const errorMessage =
+                errorData.error?.message ||
+                `API request failed with status ${response.status}`;
+
+              // Check if it's a quota error
+              if (this.isQuotaError(errorMessage)) {
+                const retryTime = this.extractRetryTime(errorMessage);
+
+                // If we have retry time and haven't exceeded max retries, retry
+                if (retryTime && retryCount < maxRetries) {
+                  const retrySeconds = Math.ceil(retryTime / 1000);
+                  this.showMessage(
+                    `${this.translations[this.currentLang].quotaErrorRetry} ${retrySeconds} ${this.translations[this.currentLang].seconds}...`,
+                    "warning"
+                  );
+
+                  // Wait for the retry time
+                  await new Promise((resolve) => setTimeout(resolve, retryTime));
+
+                  // Retry the request
+                  return this.callGeminiAPI(text, retryCount + 1, maxRetries);
+                } else {
+                  // Max retries exceeded or no retry time found
+                  throw new Error(
+                    this.translations[this.currentLang].quotaExceeded
+                  );
+                }
+              }
+
+              // For other errors, throw immediately
+              throw new Error(errorMessage);
+            }
+
+            const data = await response.json();
+
+            if (
+              !data.candidates ||
+              !data.candidates[0] ||
+              !data.candidates[0].content
+            ) {
+              throw new Error("Invalid response format from API");
+            }
+
+            let translation = data.candidates[0].content.parts[0].text;
+
+            // Clean up the response - nhưng giữ nguyên cấu trúc đoạn văn
+            translation = translation.replace(/\*\*/g, ""); // Remove bold formatting
+            translation = translation
+              .replace(/^.*?translation.*?:/i, "")
+              .trim(); // Remove "translation:" prefix
+            // Đã xóa dòng remove content in parentheses để giữ nguyên nội dung trong ()
+
+            // Không cắt theo dòng đầu tiên nữa - giữ nguyên toàn bộ translation
+            // translation = translation.split('\n')[0].trim(); // XÓA DÒNG NÀY
+
+            return translation.trim();
+          } catch (error) {
+            // If it's a quota error and we haven't retried yet, try to extract retry time
+            if (
+              this.isQuotaError(error.message) &&
+              retryCount < maxRetries
+            ) {
+              const retryTime = this.extractRetryTime(error.message);
+              if (retryTime) {
+                const retrySeconds = Math.ceil(retryTime / 1000);
+                this.showMessage(
+                  `${this.translations[this.currentLang].quotaErrorRetry} ${retrySeconds} ${this.translations[this.currentLang].seconds}...`,
+                  "warning"
+                );
+
+                await new Promise((resolve) => setTimeout(resolve, retryTime));
+                return this.callGeminiAPI(text, retryCount + 1, maxRetries);
+              }
+            }
+            throw error;
           }
-
-          const data = await response.json();
-
-          if (
-            !data.candidates ||
-            !data.candidates[0] ||
-            !data.candidates[0].content
-          ) {
-            throw new Error("Invalid response format from API");
-          }
-
-          let translation = data.candidates[0].content.parts[0].text;
-
-          // Clean up the response - nhưng giữ nguyên cấu trúc đoạn văn
-          translation = translation.replace(/\*\*/g, ""); // Remove bold formatting
-          translation = translation.replace(/^.*?translation.*?:/i, "").trim(); // Remove "translation:" prefix
-          // Đã xóa dòng remove content in parentheses để giữ nguyên nội dung trong ()
-
-          // Không cắt theo dòng đầu tiên nữa - giữ nguyên toàn bộ translation
-          // translation = translation.split('\n')[0].trim(); // XÓA DÒNG NÀY
-
-          return translation.trim();
         }
 
         clearAll() {
