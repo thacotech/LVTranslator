@@ -202,14 +202,18 @@ import type { UserPreferences } from '@/types'
 const { Text: ATypographyText } = Typography
 
 interface Props {
-  modelValue: boolean
+  open?: boolean
+  isEmbedded?: boolean
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: boolean): void
+  (e: 'update:open', value: boolean): void
 }
 
-const props = defineProps<Props>()
+const props = withDefaults(defineProps<Props>(), {
+  open: false,
+  isEmbedded: false
+})
 const emit = defineEmits<Emits>()
 
 const { t, locale } = useI18n()
@@ -229,8 +233,8 @@ const localSettings = ref({
 
 // Computed visibility
 const visible = computed({
-  get: () => props.modelValue,
-  set: (value: boolean) => emit('update:modelValue', value)
+  get: () => props.open,
+  set: (value: boolean) => emit('update:open', value)
 })
 
 // Watch for external settings changes

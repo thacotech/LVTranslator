@@ -7,7 +7,7 @@
     
     <Suspense>
       <template #default>
-        <SettingsModal :visible="true" :is-embedded="true" />
+        <SettingsModal :open="true" :is-embedded="true" />
       </template>
       <template #fallback>
         <div class="loading-container">

@@ -17,7 +17,7 @@
     </a-space>
 
     <!-- Settings Modal -->
-    <SettingsModal v-model="settingsModalVisible" />
+    <SettingsModal v-model:open="settingsModalVisible" />
 
     <!-- History Details Drawer -->
     <HistoryDetailsDrawer

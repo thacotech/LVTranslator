@@ -1,6 +1,6 @@
 <template>
   <a-modal
-    :open="visible"
+    :open="props.open"
     :title="$t('accessibility.keyboardShortcuts')"
     :footer="null"
     :width="600"
@@ -63,11 +63,11 @@ import { useKeyboardNavigation } from '@/composables/useKeyboardNavigation'
 import type { KeyboardShortcut } from '@/composables/useKeyboardNavigation'
 
 interface Props {
-  visible: boolean
+  open: boolean
 }
 
 interface Emits {
-  (e: 'update:visible', value: boolean): void
+  (e: 'update:open', value: boolean): void
 }
 
 const props = defineProps<Props>()
@@ -117,11 +117,11 @@ function formatKey(key: string): string {
 }
 
 function closeModal() {
-  emit('update:visible', false)
+  emit('update:open', false)
 }
 
 // Trap focus when modal is visible
-watch(() => props.visible, (visible) => {
+watch(() => props.open, (visible) => {
   if (visible) {
     nextTick(() => {
       const cleanup = trapFocus('.keyboard-shortcuts-modal')

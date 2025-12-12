@@ -84,7 +84,7 @@
       
       <!-- Keyboard Shortcuts Help Modal -->
       <KeyboardShortcutsModal 
-        v-model:visible="keyboardNavigation.isShortcutHelpVisible.value"
+        v-model:open="keyboardNavigation.isShortcutHelpVisible.value"
       />
     </div>
   </a-config-provider>
