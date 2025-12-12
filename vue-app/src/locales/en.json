@@ -1,0 +1,382 @@
+{
+  "app": {
+    "title": "🌐 Multi-language Translator",
+    "subtitle": "Translate between Vietnamese, Lao, and English using AI"
+  },
+  "languages": {
+    "vietnamese": "Vietnamese",
+    "lao": "Lao",
+    "english": "English"
+  },
+  "translation": {
+    "inputText": "Input Text",
+    "outputText": "Output Text",
+    "translation": "Translation",
+    "enterTextPlaceholder": "Enter text to translate...",
+    "translationPlaceholder": "Translation will appear here...",
+    "translate": "🔄 Translate",
+    "clear": "🗑️ Clear",
+    "copyTranslation": "📋 Copy Translation",
+    "translating": "Translating...",
+    "switchLanguages": "Switch Languages",
+    "confidence": "Confidence",
+    "confidenceLevel": "Confidence level: {level}%"
+  },
+  "fileUpload": {
+    "uploadDocument": "📁 Upload Document for Translation",
+    "uploadDescription": "Support for DOCX, PDF, and image files (JPG, PNG)",
+    "chooseFile": "Choose File",
+    "file": "File",
+    "size": "Size",
+    "type": "Type",
+    "extractedText": "Extracted Text:",
+    "translateExtractedText": "🔄 Translate Extracted Text",
+    "dragDropText": "Click or drag file to this area to upload",
+    "supportedFormats": "Supported formats: {formats}",
+    "maxSize": "Maximum file size: {size}",
+    "uploading": "Uploading",
+    "uploadSuccess": "File uploaded successfully",
+    "uploadError": "Upload failed: {error}",
+    "loading": "Loading file uploader...",
+    "loadComponent": "📁 Load File Uploader"
+  },
+  "filePreview": {
+    "pages": "no pages | {count} page | {count} pages",
+    "useFile": "Use File",
+    "processing": "Processing",
+    "processingError": "Processing Error",
+    "unknownError": "Unknown error occurred",
+    "retry": "Retry",
+    "contentPreview": "Content Preview",
+    "showMore": "Show More",
+    "showLess": "Show Less",
+    "noTextFound": "No text content found",
+    "characters": "Characters",
+    "words": "Words",
+    "processingTime": "Processing Time",
+    "noFileSelected": "No file selected",
+    "steps": {
+      "upload": "Upload",
+      "validate": "Validate",
+      "extract": "Extract Text",
+      "complete": "Complete"
+    }
+  },
+  "theme": {
+    "darkMode": "🌙 Dark Mode",
+    "lightMode": "☀️ Light Mode"
+  },
+  "history": {
+    "title": "Translation History",
+    "description": "View and manage your translation history",
+    "translationHistory": "📚 Translation History",
+    "recentTranslations": "Recent Translations",
+    "clearAllHistory": "🗑️ Clear All",
+    "noHistoryYet": "No translation history yet",
+    "historySubtext": "Your translations will appear here",
+    "historyCleared": "Translation history cleared successfully",
+    "historyItemDeleted": "History item deleted",
+    "historyLoadedFromHistory": "Translation loaded from history",
+    "confirmClearHistory": "Are you sure you want to clear all translation history? This action cannot be undone.",
+    "searchPlaceholder": "Search translations...",
+    "filterByDirection": "Filter by direction",
+    "sortBy": "Sort by",
+    "newest": "Newest first",
+    "oldest": "Oldest first",
+    "noResultsFound": "No results found",
+    "tryDifferentSearch": "Try a different search term or filter",
+    "paginationInfo": "Showing {start}-{end} of {total} items",
+    "useTranslation": "Use this translation",
+    "deleteItem": "Delete item",
+    "exportItem": "Export item",
+    "confirmDeleteItem": "Delete Translation",
+    "confirmDeleteItemContent": "Are you sure you want to delete this translation from history?",
+    "confirmClearHistoryContent": "This will permanently delete all your translation history.",
+    "exportSuccess": "Translation exported successfully",
+    "exportFailed": "Failed to export translation",
+    "characters": "no characters | {count} character | {count} characters",
+    "loading": "Loading history...",
+    "loadComponent": "📚 Load Translation History",
+    "details": {
+      "title": "Translation Details",
+      "content": "Translation Content",
+      "metadata": "Metadata",
+      "actions": "Actions",
+      "timestamp": "Date & Time",
+      "direction": "Translation Direction",
+      "sourceLength": "Source Length",
+      "targetLength": "Target Length",
+      "copySource": "Copy Source Text",
+      "copyTranslation": "Copy Translation",
+      "noItemSelected": "No translation selected"
+    }
+  },
+  "messages": {
+    "enterTextToTranslate": "Please enter text to translate.",
+    "textLimitExceeded": "You have exceeded the character limit.",
+    "apiKeyNotConfigured": "API key is not configured. Please set your Gemini API key in the code.",
+    "translationCompleted": "Translation completed successfully!",
+    "translationFailed": "Translation failed:",
+    "noTranslationToCopy": "No translation to copy.",
+    "translationCopied": "Translation copied to clipboard!",
+    "textExtractedSuccessfully": "Text extracted successfully!",
+    "failedToProcessFile": "Failed to process file:",
+    "noExtractedTextToTranslate": "No extracted text to translate.",
+    "translatedTextCopied": "Translated text copied to clipboard!",
+    "failedToCopyText": "Failed to copy text. Please select and copy manually."
+  },
+  "time": {
+    "justNow": "Just now",
+    "minuteAgo": "minute ago",
+    "minutesAgo": "minutes ago",
+    "hourAgo": "hour ago",
+    "hoursAgo": "hours ago",
+    "dayAgo": "day ago",
+    "daysAgo": "days ago"
+  },
+  "pluralization": {
+    "items": "no items | one item | {count} items",
+    "characters": "no characters | one character | {count} characters",
+    "translations": "no translations | one translation | {count} translations",
+    "files": "no files | one file | {count} files"
+  },
+  "tts": {
+    "play": "🔊 Play",
+    "pause": "⏸️ Pause",
+    "resume": "▶️ Resume",
+    "stop": "⏹️ Stop",
+    "settings": "⚙️ Settings",
+    "speaking": "Speaking...",
+    "startSpeaking": "Start Speaking",
+    "stopSpeaking": "Stop Speaking",
+    "speed": "Speed",
+    "pitch": "Pitch",
+    "volume": "Volume",
+    "voice": "Voice",
+    "defaultVoice": "Default Voice",
+    "reset": "🔄 Reset",
+    "settingsReset": "TTS settings reset to defaults",
+    "noTextError": "No text to speak. Please translate something first.",
+    "notSupported": "Text-to-Speech is not supported in this browser",
+    "notSupportedError": "Text-to-Speech is not supported in this browser. Please use Chrome, Edge, or Safari.",
+    "languageWarning": "Language Not Supported",
+    "languageNotSupported": "{language} voice not available. Only English is supported.",
+    "continueWithEnglish": "Continue with English",
+    "playbackCancelled": "Playback cancelled by user",
+    "error": "TTS error: {error}",
+    "startError": "Error starting TTS"
+  },
+  "stt": {
+    "voiceInput": "🎤 Voice Input",
+    "startRecording": "Start Recording (Alt+R)",
+    "stopRecording": "Stop Recording",
+    "startListening": "Start Listening",
+    "stopListening": "Stop Listening",
+    "stop": "⏹️ Stop",
+    "listening": "Listening...",
+    "recognized": "Recognized",
+    "selectLanguage": "Select Language",
+    "notSupported": "Speech Recognition Not Supported",
+    "browserWarning": "Speech recognition is not supported in this browser. Please use Chrome or Edge.",
+    "permissionRequired": "Microphone Permission Required",
+    "permissionInfo": "Please allow microphone access to use voice input.",
+    "notSupportedError": "Speech recognition is not supported in this browser. Please use Chrome or Edge.",
+    "permissionDenied": "Microphone permission denied. Please allow microphone access in your browser settings.",
+    "error": "Speech recognition error: {error}",
+    "startError": "Error starting speech recognition",
+    "textTooLong": "Speech input text too long"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "ok": "OK",
+    "yes": "Yes",
+    "no": "No",
+    "close": "Close",
+    "retry": "Retry",
+    "loading": "Loading...",
+    "confirm": "Confirm",
+    "never": "Never"
+  },
+  "notifications": {
+    "success": {
+      "title": "Success",
+      "translationCompleted": "Translation completed successfully!",
+      "fileSaved": "File saved successfully",
+      "settingsSaved": "Settings saved successfully",
+      "historyCleared": "History cleared successfully",
+      "textCopied": "Text copied to clipboard!"
+    },
+    "error": {
+      "title": "Error",
+      "translationFailed": "Translation failed",
+      "networkError": "Network connection error",
+      "fileUploadFailed": "File upload failed",
+      "processingFailed": "Processing failed",
+      "unknownError": "An unknown error occurred"
+    },
+    "warning": {
+      "title": "Warning",
+      "textTooLong": "Text is too long",
+      "fileTooLarge": "File size exceeds limit",
+      "unsupportedFormat": "Unsupported file format"
+    },
+    "info": {
+      "title": "Information",
+      "processing": "Processing your request...",
+      "uploading": "Uploading file...",
+      "saving": "Saving changes..."
+    }
+  },
+  "error": {
+    "title": "Error",
+    "unknown": "An unknown error occurred",
+    "translation": {
+      "title": "Translation Error",
+      "description": "Failed to translate text. Please try again."
+    },
+    "network": {
+      "title": "Network Error",
+      "description": "Unable to connect to the server. Please check your internet connection."
+    },
+    "application": {
+      "title": "Application Error",
+      "description": "An unexpected error occurred. Please refresh the page."
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Configure your application preferences",
+    "language": {
+      "title": "Language Settings",
+      "interface": "Interface Language",
+      "selectInterface": "Select interface language",
+      "defaultSource": "Default Source Language",
+      "defaultTarget": "Default Target Language",
+      "selectDefault": "Select default language"
+    },
+    "appearance": {
+      "title": "Appearance",
+      "theme": "Theme",
+      "fontSize": "Font Size",
+      "small": "Small",
+      "medium": "Medium",
+      "large": "Large",
+      "compactMode": "Compact Mode"
+    },
+    "translation": {
+      "title": "Translation Settings",
+      "autoDetect": "Auto-detect source language",
+      "showConfidence": "Show confidence score",
+      "autoSave": "Auto-save translations"
+    },
+    "history": {
+      "title": "History Settings",
+      "saveHistory": "Save translation history",
+      "maxItems": "Maximum history items"
+    },
+    "audio": {
+      "title": "Audio Settings",
+      "enableTTS": "Enable Text-to-Speech",
+      "enableSTT": "Enable Speech-to-Text"
+    },
+    "accessibility": {
+      "title": "Accessibility",
+      "keyboardShortcuts": "Enable keyboard shortcuts"
+    },
+    "actions": {
+      "save": "Save Settings",
+      "reset": "Reset to Defaults"
+    }
+  },
+  "accessibility": {
+    "skipToContent": "Skip to main content",
+    "skipToNavigation": "Skip to navigation",
+    "skippedToContent": "Skipped to main content",
+    "skippedToNavigation": "Skipped to navigation",
+    "keyboardShortcuts": "Keyboard Shortcuts",
+    "shortcutsDescription": "Use these keyboard shortcuts to navigate and interact with the application more efficiently.",
+    "shortcutsNote": "Note: Some shortcuts may not work when typing in text fields.",
+    "changeLanguage": "Change interface language",
+    "toggleMobileMenu": "Toggle mobile menu",
+    "sidebar": "Sidebar navigation",
+    "navigatedTo": "Navigated to {page}",
+    "translationStarted": "Translation started from {from} to {to}",
+    "translationCompleted": "Translation completed successfully",
+    "translationFailed": "Translation failed: {error}",
+    "confidenceLevel": "Confidence level: {level}%",
+    "fileUploaded": "File {name} uploaded, size: {size}",
+    "fileProcessing": "Processing file {name}",
+    "fileProcessed": "File {name} processed, extracted {characters} characters",
+    "settingChanged": "{setting} changed to {value}",
+    "validationError": "{field}: {error}",
+    "shortcutActivated": "Keyboard shortcut {shortcut} activated: {action}",
+    "history": {
+      "cleared": "Translation history cleared",
+      "clearedWithCount": "{count} translations removed from history",
+      "itemDeleted": "Translation deleted from history",
+      "itemAdded": "Translation added to history",
+      "exported": "History exported successfully"
+    },
+    "selectSourceLanguage": "Select source language",
+    "selectTargetLanguage": "Select target language",
+    "characterCount": "{count} of {limit} characters",
+    "clearAllText": "Clear all text",
+    "copyTranslationToClipboard": "Copy translation to clipboard",
+    "translationInProgress": "Translation in progress, please wait",
+    "sourceLanguage": "Source language",
+    "targetLanguage": "Target language",
+    "languagesSwapped": "Languages swapped"
+  },
+  "shortcuts": {
+    "category": {
+      "navigation": "Navigation",
+      "translation": "Translation",
+      "file": "File Operations",
+      "focus": "Focus Management",
+      "accessibility": "Accessibility"
+    },
+    "Navigate to Translation": "Navigate to Translation page",
+    "Navigate to History": "Navigate to History page", 
+    "Navigate to Settings": "Navigate to Settings page",
+    "Translate text": "Translate the current text",
+    "Swap languages": "Swap source and target languages",
+    "Copy translation": "Copy translation to clipboard",
+    "Open file": "Open file dialog",
+    "Show keyboard shortcuts help": "Show this help dialog",
+    "Close dialogs/modals": "Close open dialogs or modals",
+    "Focus next element": "Move focus to next interactive element",
+    "Focus previous element": "Move focus to previous interactive element"
+  },
+  "footer": {
+    "allRightsReserved": "Khamko All rights reserved."
+  },
+  "nav": {
+    "translate": "Translate",
+    "history": "History", 
+    "settings": "Settings",
+    "fileUpload": "File Upload"
+  },
+  "sidebar": {
+    "navigation": "Navigation",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "quickStats": "Quick Stats",
+    "quickActions": "Quick Actions",
+    "lastUpdate": "Last Update"
+  },
+  "stats": {
+    "totalTranslations": "Total Translations",
+    "todayTranslations": "Today's Translations", 
+    "favoriteLanguage": "Favorite Language"
+  },
+  "actions": {
+    "newTranslation": "New Translation",
+    "clearHistory": "Clear History",
+    "exportHistory": "Export History"
+  },
+  "tools": {
+    "textToSpeech": "Text to Speech",
+    "speechToText": "Speech to Text",
+    "batchTranslate": "Batch Translate"
+  }
+}

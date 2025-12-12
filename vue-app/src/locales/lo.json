@@ -1,0 +1,273 @@
+{
+  "app": {
+    "title": "🌐 ແປພາສາຫຼາຍພາສາ",
+    "subtitle": "ແປພາສາລະຫວ່າງ ຫວຽດນາມ, ລາວ, ແລະ ອັງກິດ ໂດຍໃຊ້ AI"
+  },
+  "languages": {
+    "vietnamese": "ພາສາຫວຽດນາມ",
+    "lao": "ພາສາລາວ",
+    "english": "ພາສາອັງກິດ"
+  },
+  "translation": {
+    "inputText": "ຂໍ້ຄວາມເຂົ້າ",
+    "translation": "ການແປພາສາ",
+    "enterTextPlaceholder": "ປ້ອນຂໍ້ຄວາມທີ່ຕ້ອງການແປພາສາ...",
+    "translationPlaceholder": "ການແປພາສາຈະປາກົດທີ່ນີ້...",
+    "translate": "🔄 ແປພາສາ",
+    "clear": "🗑️ ລຶບ",
+    "copyTranslation": "📋 ຄັດລອກການແປພາສາ",
+    "translating": "ກຳລັງແປພາສາ...",
+    "switchLanguages": "ສະຫຼັບພາສາ"
+  },
+  "fileUpload": {
+    "uploadDocument": "📁 ອັບໂຫລດເອກະສານເພື່ອແປພາສາ",
+    "uploadDescription": "ຮອງຮັບໄຟລ໌ DOCX, PDF ແລະ ຮູບພາບ (JPG, PNG)",
+    "chooseFile": "ເລືອກໄຟລ໌",
+    "file": "ໄຟລ໌",
+    "size": "ຂະໜາດ",
+    "type": "ປະເພດ",
+    "extractedText": "ຂໍ້ຄວາມທີ່ສະກັດແລ້ວ:",
+    "translateExtractedText": "🔄 ແປພາສາຂໍ້ຄວາມທີ່ສະກັດແລ້ວ",
+    "dragDropText": "ຄລິກ ຫຼື ລາກໄຟລ໌ມາທີ່ບໍລິເວນນີ້ເພື່ອອັບໂຫລດ",
+    "supportedFormats": "ຮູບແບບທີ່ຮອງຮັບ: {formats}",
+    "maxSize": "ຂະໜາດໄຟລ໌ສູງສຸດ: {size}",
+    "uploading": "ກຳລັງອັບໂຫລດ",
+    "uploadSuccess": "ອັບໂຫລດໄຟລ໌ສຳເລັດແລ້ວ",
+    "uploadError": "ອັບໂຫລດລົ້ມເຫລວ: {error}"
+  },
+  "filePreview": {
+    "pages": "{count} ໜ້າ",
+    "useFile": "ໃຊ້ໄຟລ໌",
+    "processing": "ກຳລັງປະມວນຜົນ",
+    "processingError": "ຂໍ້ຜິດພາດໃນການປະມວນຜົນ",
+    "unknownError": "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຮູ້ສາເຫດ",
+    "retry": "ລອງໃໝ່",
+    "contentPreview": "ເບິ່ງຕົວຢ່າງເນື້ອຫາ",
+    "showMore": "ສະແດງເພີ່ມເຕີມ",
+    "showLess": "ສະແດງໜ້ອຍລົງ",
+    "noTextFound": "ບໍ່ພົບເນື້ອຫາຂໍ້ຄວາມ",
+    "characters": "ຕົວອັກສອນ",
+    "words": "ຄຳ",
+    "processingTime": "ເວລາປະມວນຜົນ",
+    "noFileSelected": "ບໍ່ໄດ້ເລືອກໄຟລ໌",
+    "steps": {
+      "upload": "ອັບໂຫລດ",
+      "validate": "ກວດສອບ",
+      "extract": "ສະກັດຂໍ້ຄວາມ",
+      "complete": "ສຳເລັດ"
+    }
+  },
+  "theme": {
+    "darkMode": "🌙 ໂໝດມືດ",
+    "lightMode": "☀️ ໂໝດແຈ້ງ"
+  },
+  "history": {
+    "translationHistory": "📚 ປະຫວັດການແປພາສາ",
+    "recentTranslations": "ການແປພາສາຫຼ້າສຸດ",
+    "clearAllHistory": "🗑️ ລຶບທັງໝົດ",
+    "noHistoryYet": "ຍັງບໍ່ມີປະຫວັດການແປພາສາ",
+    "historySubtext": "ການແປພາສາຂອງເຈົ້າຈະປາກົດທີ່ນີ້",
+    "historyCleared": "ລຶບປະຫວັດການແປພາສາສຳເລັດແລ້ວ",
+    "historyItemDeleted": "ລຶບລາຍການປະຫວັດແລ້ວ",
+    "historyLoadedFromHistory": "ໂຫລດການແປພາສາຈາກປະຫວັດແລ້ວ",
+    "confirmClearHistory": "ເຈົ້າແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບປະຫວັດການແປພາສາທັງໝົດ? ການກະທຳນີ້ບໍ່ສາມາດຍົກເລີກໄດ້.",
+    "searchPlaceholder": "ຄົ້ນຫາການແປພາສາ...",
+    "filterByDirection": "ກັ່ນຕອງຕາມທິດທາງ",
+    "sortBy": "ຈັດລຽງຕາມ",
+    "newest": "ໃໝ່ສຸດກ່ອນ",
+    "oldest": "ເກົ່າສຸດກ່ອນ",
+    "noResultsFound": "ບໍ່ພົບຜົນການຄົ້ນຫາ",
+    "tryDifferentSearch": "ລອງໃຊ້ຄຳຄົ້ນຫາ ຫຼື ຕົວກັ່ນຕອງອື່ນ",
+    "paginationInfo": "ສະແດງ {start}-{end} ຈາກທັງໝົດ {total} ລາຍການ",
+    "useTranslation": "ໃຊ້ການແປພາສານີ້",
+    "deleteItem": "ລຶບລາຍການ",
+    "exportItem": "ສົ່ງອອກລາຍການ",
+    "confirmDeleteItem": "ລຶບການແປພາສາ",
+    "confirmDeleteItemContent": "ເຈົ້າແນ່ໃຈບໍ່ວ່າຕ້ອງການລຶບການແປພາສານີ້ອອກຈາກປະຫວັດ?",
+    "confirmClearHistoryContent": "ນີ້ຈະລຶບປະຫວັດການແປພາສາທັງໝົດຂອງເຈົ້າຢ່າງຖາວອນ.",
+    "exportSuccess": "ສົ່ງອອກການແປພາສາສຳເລັດແລ້ວ",
+    "exportFailed": "ບໍ່ສາມາດສົ່ງອອກການແປພາສາໄດ້",
+    "characters": "{count} ຕົວອັກສອນ",
+    "details": {
+      "title": "ລາຍລະອຽດການແປພາສາ",
+      "content": "ເນື້ອຫາການແປພາສາ",
+      "metadata": "ຂໍ້ມູນເມຕາ",
+      "actions": "ການກະທຳ",
+      "timestamp": "ວັນທີ & ເວລາ",
+      "direction": "ທິດທາງການແປພາສາ",
+      "sourceLength": "ຄວາມຍາວຕົ້ນທາງ",
+      "targetLength": "ຄວາມຍາວປາຍທາງ",
+      "copySource": "ຄັດລອກຂໍ້ຄວາມຕົ້ນທາງ",
+      "copyTranslation": "ຄັດລອກການແປພາສາ",
+      "noItemSelected": "ບໍ່ໄດ້ເລືອກການແປພາສາ"
+    }
+  },
+  "messages": {
+    "enterTextToTranslate": "ກະລຸນາປ້ອນຂໍ້ຄວາມທີ່ຕ້ອງການແປພາສາ.",
+    "textLimitExceeded": "ທ່ານໄດ້ເກີນຂີດຈຳກັດຕົວອັກສອນແລ້ວ.",
+    "apiKeyNotConfigured": "API key ຍັງບໍ່ໄດ້ຕັ້ງຄ່າ. ກະລຸນາຕັ້ງ Gemini API key ໃນ code.",
+    "translationCompleted": "ການແປພາສາສຳເລັດແລ້ວ!",
+    "translationFailed": "ການແປພາສາລົ້ມເຫລວ:",
+    "noTranslationToCopy": "ບໍ່ມີການແປພາສາໃຫ້ຄັດລອກ.",
+    "translationCopied": "ຄັດລອກການແປພາສາໄປ clipboard ແລ້ວ!",
+    "textExtractedSuccessfully": "ສະກັດຂໍ້ຄວາມສຳເລັດແລ້ວ!",
+    "failedToProcessFile": "ບໍ່ສາມາດປະມວນຜົນໄຟລ໌ໄດ້:",
+    "noExtractedTextToTranslate": "ບໍ່ມີຂໍ້ຄວາມທີ່ສະກັດແລ້ວໃຫ້ແປພາສາ.",
+    "translatedTextCopied": "ຄັດລອກຂໍ້ຄວາມທີ່ແປແລ້ວໄປ clipboard ແລ້ວ!",
+    "failedToCopyText": "ບໍ່ສາມາດຄັດລອກຂໍ້ຄວາມໄດ້. ກະລຸນາເລືອກ ແລະ ຄັດລອກດ້ວຍຕົນເອງ."
+  },
+  "time": {
+    "justNow": "ຫາກໍ່ນີ້",
+    "minuteAgo": "ນາທີກ່ອນ",
+    "minutesAgo": "ນາທີກ່ອນ",
+    "hourAgo": "ຊົ່ວໂມງກ່ອນ",
+    "hoursAgo": "ຊົ່ວໂມງກ່ອນ",
+    "dayAgo": "ມື້ກ່ອນ",
+    "daysAgo": "ມື້ກ່ອນ"
+  },
+  "pluralization": {
+    "items": "{count} ລາຍການ",
+    "characters": "{count} ຕົວອັກສອນ",
+    "translations": "{count} ການແປພາສາ",
+    "files": "{count} ໄຟລ໌"
+  },
+  "tts": {
+    "play": "🔊 ຫຼິ້ນ",
+    "pause": "⏸️ ຢຸດຊົ່ວຄາວ",
+    "resume": "▶️ ສືບຕໍ່",
+    "stop": "⏹️ ຢຸດ",
+    "settings": "⚙️ ການຕັ້ງຄ່າ",
+    "speaking": "ກຳລັງເວົ້າ...",
+    "speed": "ຄວາມໄວ",
+    "pitch": "ຄວາມສູງ",
+    "volume": "ລະດັບສຽງ",
+    "voice": "ສຽງ",
+    "defaultVoice": "ສຽງເລີ່ມຕົ້ນ",
+    "reset": "🔄 ຣີເຊັດ",
+    "settingsReset": "ຣີເຊັດການຕັ້ງຄ່າ TTS ກັບຄືນເປັນຄ່າເລີ່ມຕົ້ນແລ້ວ",
+    "noTextError": "ບໍ່ມີຂໍ້ຄວາມໃຫ້ອ່ານ. ກະລຸນາແປພາສາບາງສິ່ງກ່ອນ.",
+    "notSupportedError": "ຟີເຈີ Text-to-Speech ບໍ່ໄດ້ຮັບການສະໜັບສະໜູນໃນບຣາວເຊີນີ້. ກະລຸນາໃຊ້ Chrome, Edge, ຫຼື Safari.",
+    "languageWarning": "ພາສາບໍ່ໄດ້ຮັບການສະໜັບສະໜູນ",
+    "languageNotSupported": "ສຽງ {language} ບໍ່ມີໃຫ້ໃຊ້. ມີແຕ່ພາສາອັງກິດເທົ່ານັ້ນ.",
+    "continueWithEnglish": "ສືບຕໍ່ດ້ວຍພາສາອັງກິດ",
+    "playbackCancelled": "ຜູ້ໃຊ້ໄດ້ຍົກເລີກການຫຼິ້ນ"
+  },
+  "stt": {
+    "voiceInput": "🎤 ປ້ອນດ້ວຍສຽງ",
+    "startRecording": "ເລີ່ມບັນທຶກ (Alt+R)",
+    "stopRecording": "ຢຸດບັນທຶກ",
+    "stop": "⏹️ ຢຸດ",
+    "listening": "ກຳລັງຟັງ...",
+    "recognized": "ຮັບຮູ້ແລ້ວ",
+    "selectLanguage": "ເລືອກພາສາ",
+    "notSupported": "ບໍ່ສະໜັບສະໜູນການຮັບຮູ້ສຽງເວົ້າ",
+    "browserWarning": "ການຮັບຮູ້ສຽງເວົ້າບໍ່ໄດ້ຮັບການສະໜັບສະໜູນໃນບຣາວເຊີນີ້. ກະລຸນາໃຊ້ Chrome ຫຼື Edge.",
+    "permissionRequired": "ຕ້ອງການສິດອະນຸຍາດໄມໂຄຣໂຟນ",
+    "permissionInfo": "ກະລຸນາອະນຸຍາດການເຂົ້າເຖິງໄມໂຄຣໂຟນເພື່ອໃຊ້ການປ້ອນດ້ວຍສຽງ.",
+    "notSupportedError": "ການຮັບຮູ້ສຽງເວົ້າບໍ່ໄດ້ຮັບການສະໜັບສະໜູນໃນບຣາວເຊີນີ້. ກະລຸນາໃຊ້ Chrome ຫຼື Edge.",
+    "permissionDenied": "ສິດອະນຸຍາດໄມໂຄຣໂຟນຖືກປະຕິເສດ. ກະລຸນາອະນຸຍາດການເຂົ້າເຖິງໄມໂຄຣໂຟນໃນການຕັ້ງຄ່າບຣາວເຊີ."
+  },
+  "common": {
+    "cancel": "ຍົກເລີກ",
+    "ok": "ຕົກລົງ",
+    "yes": "ແມ່ນ",
+    "no": "ບໍ່",
+    "close": "ປິດ",
+    "retry": "ລອງໃໝ່",
+    "loading": "ກຳລັງໂຫລດ...",
+    "confirm": "ຢືນຢັນ"
+  },
+  "notifications": {
+    "success": {
+      "title": "ສຳເລັດ",
+      "translationCompleted": "ການແປພາສາສຳເລັດແລ້ວ!",
+      "fileSaved": "ບັນທຶກໄຟລ໌ສຳເລັດແລ້ວ",
+      "settingsSaved": "ບັນທຶກການຕັ້ງຄ່າສຳເລັດແລ້ວ",
+      "historyCleared": "ລຶບປະຫວັດສຳເລັດແລ້ວ",
+      "textCopied": "ຄັດລອກຂໍ້ຄວາມໄປ clipboard ແລ້ວ!"
+    },
+    "error": {
+      "title": "ຂໍ້ຜິດພາດ",
+      "translationFailed": "ການແປພາສາລົ້ມເຫລວ",
+      "networkError": "ຂໍ້ຜິດພາດການເຊື່ອມຕໍ່ເຄືອຂ່າຍ",
+      "fileUploadFailed": "ອັບໂຫລດໄຟລ໌ລົ້ມເຫລວ",
+      "processingFailed": "ການປະມວນຜົນລົ້ມເຫລວ",
+      "unknownError": "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຮູ້ສາເຫດ"
+    },
+    "warning": {
+      "title": "ຄຳເຕືອນ",
+      "textTooLong": "ຂໍ້ຄວາມຍາວເກີນໄປ",
+      "fileTooLarge": "ຂະໜາດໄຟລ໌ເກີນຂີດຈຳກັດ",
+      "unsupportedFormat": "ຮູບແບບໄຟລ໌ບໍ່ໄດ້ຮັບການສະໜັບສະໜູນ"
+    },
+    "info": {
+      "title": "ຂໍ້ມູນ",
+      "processing": "ກຳລັງປະມວນຜົນຄຳຮ້ອງຂໍຂອງທ່ານ...",
+      "uploading": "ກຳລັງອັບໂຫລດໄຟລ໌...",
+      "saving": "ກຳລັງບັນທຶກການປ່ຽນແປງ..."
+    }
+  },
+  "error": {
+    "title": "ຂໍ້ຜິດພາດ",
+    "unknown": "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຮູ້ສາເຫດ",
+    "translation": {
+      "title": "ຂໍ້ຜິດພາດການແປພາສາ",
+      "description": "ບໍ່ສາມາດແປພາສາຂໍ້ຄວາມໄດ້. ກະລຸນາລອງໃໝ່."
+    },
+    "network": {
+      "title": "ຂໍ້ຜິດພາດເຄືອຂ່າຍ",
+      "description": "ບໍ່ສາມາດເຊື່ອມຕໍ່ກັບເຊີເວີໄດ້. ກະລຸນາກວດສອບການເຊື່ອມຕໍ່ອິນເຕີເນັດ."
+    },
+    "application": {
+      "title": "ຂໍ້ຜິດພາດແອັບພລິເຄຊັນ",
+      "description": "ເກີດຂໍ້ຜິດພາດທີ່ບໍ່ຄາດຄິດ. ກະລຸນາໂຫລດໜ້າໃໝ່."
+    }
+  },
+  "settings": {
+    "title": "ການຕັ້ງຄ່າ",
+    "language": {
+      "title": "ການຕັ້ງຄ່າພາສາ",
+      "interface": "ພາສາສ່ວນຕິດຕໍ່",
+      "selectInterface": "ເລືອກພາສາສ່ວນຕິດຕໍ່",
+      "defaultSource": "ພາສາຕົ້ນທາງເລີ່ມຕົ້ນ",
+      "defaultTarget": "ພາສາປາຍທາງເລີ່ມຕົ້ນ",
+      "selectDefault": "ເລືອກພາສາເລີ່ມຕົ້ນ"
+    },
+    "appearance": {
+      "title": "ຮູບລັກສະນະ",
+      "theme": "ຫົວຂໍ້",
+      "fontSize": "ຂະໜາດຕົວອັກສອນ",
+      "small": "ນ້ອຍ",
+      "medium": "ກາງ",
+      "large": "ໃຫຍ່",
+      "compactMode": "ໂໝດກະທັດຮັດ"
+    },
+    "translation": {
+      "title": "ການຕັ້ງຄ່າການແປພາສາ",
+      "autoDetect": "ກວດຫາພາສາຕົ້ນທາງອັດຕະໂນມັດ",
+      "showConfidence": "ສະແດງຄະແນນຄວາມເຊື່ອໝັ້ນ",
+      "autoSave": "ບັນທຶກການແປພາສາອັດຕະໂນມັດ"
+    },
+    "history": {
+      "title": "ການຕັ້ງຄ່າປະຫວັດ",
+      "saveHistory": "ບັນທຶກປະຫວັດການແປພາສາ",
+      "maxItems": "ຈຳນວນລາຍການປະຫວັດສູງສຸດ"
+    },
+    "audio": {
+      "title": "ການຕັ້ງຄ່າສຽງ",
+      "enableTTS": "ເປີດໃຊ້ Text-to-Speech",
+      "enableSTT": "ເປີດໃຊ້ Speech-to-Text"
+    },
+    "accessibility": {
+      "title": "ການເຂົ້າເຖິງ",
+      "keyboardShortcuts": "ເປີດໃຊ້ປຸ່ມລັດ"
+    },
+    "actions": {
+      "save": "ບັນທຶກການຕັ້ງຄ່າ",
+      "reset": "ຣີເຊັດເປັນຄ່າເລີ່ມຕົ້ນ"
+    }
+  },
+  "footer": {
+    "allRightsReserved": "ສະຫງວນລິຂະສິດທັງໝົດ."
+  }
+}

@@ -1,0 +1,291 @@
+<template>
+  <a-modal
+    v-model:open="visible"
+    :title="$t('settings.title')"
+    :width="600"
+    :footer="null"
+    @cancel="handleCancel"
+  >
+    <div class="settings-content">
+      <!-- Language Settings -->
+      <a-card :title="$t('settings.language.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item :label="$t('settings.language.interface')">
+            <a-select
+              v-model:value="localSettings.language"
+              :placeholder="$t('settings.language.selectInterface')"
+              @change="handleLanguageChange"
+            >
+              <a-select-option value="en">{{ $t('languages.english') }}</a-select-option>
+              <a-select-option value="vi">{{ $t('languages.vietnamese') }}</a-select-option>
+              <a-select-option value="lo">{{ $t('languages.lao') }}</a-select-option>
+            </a-select>
+          </a-form-item>
+
+          <a-form-item :label="$t('settings.language.defaultSource')">
+            <a-select
+              v-model:value="localSettings.preferences.defaultSourceLanguage"
+              :placeholder="$t('settings.language.selectDefault')"
+            >
+              <a-select-option value="vi">{{ $t('languages.vietnamese') }}</a-select-option>
+              <a-select-option value="lo">{{ $t('languages.lao') }}</a-select-option>
+              <a-select-option value="en">{{ $t('languages.english') }}</a-select-option>
+            </a-select>
+          </a-form-item>
+
+          <a-form-item :label="$t('settings.language.defaultTarget')">
+            <a-select
+              v-model:value="localSettings.preferences.defaultTargetLanguage"
+              :placeholder="$t('settings.language.selectDefault')"
+            >
+              <a-select-option value="vi">{{ $t('languages.vietnamese') }}</a-select-option>
+              <a-select-option value="lo">{{ $t('languages.lao') }}</a-select-option>
+              <a-select-option value="en">{{ $t('languages.english') }}</a-select-option>
+            </a-select>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- Appearance Settings -->
+      <a-card :title="$t('settings.appearance.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item :label="$t('settings.appearance.theme')">
+            <a-radio-group v-model:value="localSettings.theme">
+              <a-radio value="light">{{ $t('theme.lightMode') }}</a-radio>
+              <a-radio value="dark">{{ $t('theme.darkMode') }}</a-radio>
+            </a-radio-group>
+          </a-form-item>
+
+          <a-form-item :label="$t('settings.appearance.fontSize')">
+            <a-radio-group v-model:value="localSettings.preferences.fontSize">
+              <a-radio value="small">{{ $t('settings.appearance.small') }}</a-radio>
+              <a-radio value="medium">{{ $t('settings.appearance.medium') }}</a-radio>
+              <a-radio value="large">{{ $t('settings.appearance.large') }}</a-radio>
+            </a-radio-group>
+          </a-form-item>
+
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.compactMode">
+              {{ $t('settings.appearance.compactMode') }}
+            </a-checkbox>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- Translation Settings -->
+      <a-card :title="$t('settings.translation.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.autoDetectLanguage">
+              {{ $t('settings.translation.autoDetect') }}
+            </a-checkbox>
+          </a-form-item>
+
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.showConfidenceScore">
+              {{ $t('settings.translation.showConfidence') }}
+            </a-checkbox>
+          </a-form-item>
+
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.autoSave">
+              {{ $t('settings.translation.autoSave') }}
+            </a-checkbox>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- History Settings -->
+      <a-card :title="$t('settings.history.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.saveHistory">
+              {{ $t('settings.history.saveHistory') }}
+            </a-checkbox>
+          </a-form-item>
+
+          <a-form-item :label="$t('settings.history.maxItems')">
+            <a-input-number
+              v-model:value="localSettings.preferences.maxHistoryItems"
+              :min="10"
+              :max="1000"
+              :step="10"
+              style="width: 100%"
+            />
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- Audio Settings -->
+      <a-card :title="$t('settings.audio.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.enableTTS">
+              {{ $t('settings.audio.enableTTS') }}
+            </a-checkbox>
+          </a-form-item>
+
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.enableSTT">
+              {{ $t('settings.audio.enableSTT') }}
+            </a-checkbox>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- Accessibility Settings -->
+      <a-card :title="$t('settings.accessibility.title')" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item>
+            <a-checkbox v-model:checked="localSettings.preferences.enableKeyboardShortcuts">
+              {{ $t('settings.accessibility.keyboardShortcuts') }}
+            </a-checkbox>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
+      <!-- Action Buttons -->
+      <div class="settings-actions">
+        <a-space>
+          <a-button @click="handleReset">
+            {{ $t('settings.actions.reset') }}
+          </a-button>
+          <a-button @click="handleCancel">
+            {{ $t('common.cancel') }}
+          </a-button>
+          <a-button type="primary" @click="handleSave">
+            {{ $t('settings.actions.save') }}
+          </a-button>
+        </a-space>
+      </div>
+    </div>
+  </a-modal>
+</template>
+
+<script setup lang="ts">
+import { ref, computed, watch } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useSettingsStore } from '@/stores/settings'
+import { useNotification } from '@/services/notificationService'
+import type { Language, Theme, FontSize } from '@/types/enums'
+import type { UserPreferences } from '@/types'
+
+interface Props {
+  modelValue: boolean
+}
+
+interface Emits {
+  (e: 'update:modelValue', value: boolean): void
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const { t, locale } = useI18n()
+const settingsStore = useSettingsStore()
+const { showSuccess, showError } = useNotification()
+
+// Local reactive copy of settings
+const localSettings = ref({
+  language: settingsStore.language,
+  theme: settingsStore.theme,
+  preferences: { ...settingsStore.preferences }
+})
+
+// Computed visibility
+const visible = computed({
+  get: () => props.modelValue,
+  set: (value: boolean) => emit('update:modelValue', value)
+})
+
+// Watch for external settings changes
+watch(
+  () => settingsStore.$state,
+  (newState) => {
+    localSettings.value = {
+      language: newState.language,
+      theme: newState.theme,
+      preferences: { ...newState.preferences }
+    }
+  },
+  { deep: true }
+)
+
+// Handle language change immediately for UI feedback
+function handleLanguageChange(newLanguage: Language) {
+  locale.value = newLanguage
+}
+
+// Handle save
+async function handleSave() {
+  try {
+    // Update store with local settings
+    settingsStore.setLanguage(localSettings.value.language)
+    settingsStore.setTheme(localSettings.value.theme)
+    settingsStore.updatePreferences(localSettings.value.preferences)
+    
+    // Save to storage
+    await settingsStore.saveSettings()
+    
+    showSuccess('notifications.success.settingsSaved')
+    visible.value = false
+  } catch (error) {
+    console.error('Failed to save settings:', error)
+    showError('notifications.error.title', 'Failed to save settings')
+  }
+}
+
+// Handle cancel
+function handleCancel() {
+  // Reset local settings to store values
+  localSettings.value = {
+    language: settingsStore.language,
+    theme: settingsStore.theme,
+    preferences: { ...settingsStore.preferences }
+  }
+  
+  // Reset locale if it was changed
+  locale.value = settingsStore.language
+  
+  visible.value = false
+}
+
+// Handle reset to defaults
+function handleReset() {
+  settingsStore.resetToDefaults()
+  localSettings.value = {
+    language: settingsStore.language,
+    theme: settingsStore.theme,
+    preferences: { ...settingsStore.preferences }
+  }
+  locale.value = settingsStore.language
+  showSuccess('notifications.success.title', 'Settings reset to defaults')
+}
+</script>
+
+<style scoped>
+.settings-content {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.settings-section {
+  margin-bottom: 16px;
+}
+
+.settings-section:last-of-type {
+  margin-bottom: 24px;
+}
+
+.settings-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Dark mode styles */
+:global(.dark-mode) .settings-actions {
+  border-top-color: var(--border-color-dark);
+}
+</style>
