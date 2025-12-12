@@ -174,10 +174,5 @@ app.mount('#app')
 // Complete app load tracking
 appLoadTracker()
 
-// Log performance summary in development
-if (process.env.NODE_ENV === 'development') {
-  setTimeout(() => {
-    console.log('Performance Summary:', performanceMonitor.getPerformanceSummary())
-    console.log('Chunk Statistics:', performanceMonitor.getChunkStatistics())
-  }, 2000)
-}
+// Performance monitoring available but not logging to console
+// Use performanceMonitor.getPerformanceSummary() in dev tools if needed

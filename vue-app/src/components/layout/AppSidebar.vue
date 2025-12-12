@@ -41,7 +41,6 @@
       v-model:selectedKeys="selectedKeys"
       :mode="'inline'"
       :theme="settingsStore.isDarkMode ? 'dark' : 'light'"
-      :inline-collapsed="collapsed"
       class="sidebar-menu"
     >
       <!-- Translation Section -->

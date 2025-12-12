@@ -55,7 +55,7 @@
             <template #icon>
               <GlobalOutlined />
             </template>
-            {{ getCurrentLanguageLabel() }}
+            {{ getCurrentLanguageLabel }}
             <DownOutlined />
           </a-button>
           <template #overlay>
@@ -178,7 +178,7 @@ import {
   MenuOutlined
 } from '@ant-design/icons-vue'
 import { useSettingsStore } from '@/stores/settings'
-import { useCachedComputed, useMemoizedFunction, useSelectiveWatch } from '@/composables/useOptimizedReactivity'
+
 import type { Language } from '@/types'
 
 const router = useRouter()
@@ -190,8 +190,8 @@ const settingsStore = useSettingsStore()
 const selectedMenuKeys = shallowRef<string[]>([])
 const mobileMenuVisible = ref(false)
 
-// Memoized language label function for better performance
-const getCurrentLanguageLabel = useCachedComputed(() => {
+// Language label computed property
+const getCurrentLanguageLabel = computed(() => {
   switch (locale.value) {
     case 'en':
       return '🇺🇸 EN'
@@ -202,7 +202,7 @@ const getCurrentLanguageLabel = useCachedComputed(() => {
     default:
       return '🇺🇸 EN'
   }
-}, { cacheKey: 'language-label', ttl: 5000 })
+})
 
 // Methods
 function navigateTo(path: string) {
@@ -231,26 +231,22 @@ function closeMobileMenu() {
   mobileMenuVisible.value = false
 }
 
-// Memoized menu key update function
-const updateSelectedMenuKey = useMemoizedFunction(
-  (path: string) => {
-    if (path === '/') {
-      return ['translate']
-    } else if (path.startsWith('/history')) {
-      return ['history']
-    } else if (path.startsWith('/settings')) {
-      return ['settings']
-    } else {
-      return []
-    }
-  },
-  [ref(route.path)]
-)
+// Menu key update function
+function updateSelectedMenuKey(path: string) {
+  if (path === '/') {
+    return ['translate']
+  } else if (path.startsWith('/history')) {
+    return ['history']
+  } else if (path.startsWith('/settings')) {
+    return ['settings']
+  } else {
+    return []
+  }
+}
 
-// Optimized route watching - only update when path actually changes
-useSelectiveWatch(
-  () => route,
-  (r) => r.path,
+// Watch route changes
+watch(
+  () => route.path,
   (path) => {
     selectedMenuKeys.value = updateSelectedMenuKey(path)
   }
