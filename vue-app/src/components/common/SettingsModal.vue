@@ -72,6 +72,34 @@
         </a-form>
       </a-card>
 
+      <!-- API Configuration -->
+      <a-card title="API Configuration" class="settings-section">
+        <a-form layout="vertical">
+          <a-form-item label="Google Gemini API Key">
+            <a-input-password
+              v-model:value="apiKey"
+              placeholder="Enter your Google Gemini API key"
+              @change="handleApiKeyChange"
+            />
+            <div class="api-key-help">
+              <a-typography-text type="secondary">
+                Get your free API key from 
+                <a href="https://aistudio.google.com/" target="_blank">Google AI Studio</a>
+              </a-typography-text>
+            </div>
+          </a-form-item>
+          
+          <a-form-item>
+            <a-button type="primary" @click="testApiKey" :loading="testingApiKey">
+              Test API Key
+            </a-button>
+            <a-button @click="clearApiKey" style="margin-left: 8px;">
+              Clear
+            </a-button>
+          </a-form-item>
+        </a-form>
+      </a-card>
+
       <!-- Translation Settings -->
       <a-card :title="$t('settings.translation.title')" class="settings-section">
         <a-form layout="vertical">
@@ -165,10 +193,13 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { Typography } from 'ant-design-vue'
 import { useSettingsStore } from '@/stores/settings'
 import { useNotification } from '@/services/notificationService'
 import type { Language, Theme, FontSize } from '@/types/enums'
 import type { UserPreferences } from '@/types'
+
+const { Text: ATypographyText } = Typography
 
 interface Props {
   modelValue: boolean
@@ -184,6 +215,10 @@ const emit = defineEmits<Emits>()
 const { t, locale } = useI18n()
 const settingsStore = useSettingsStore()
 const { showSuccess, showError } = useNotification()
+
+// API Key management
+const apiKey = ref(localStorage.getItem('gemini_api_key') || '')
+const testingApiKey = ref(false)
 
 // Local reactive copy of settings
 const localSettings = ref({
@@ -250,6 +285,55 @@ function handleCancel() {
   visible.value = false
 }
 
+// API Key functions
+function handleApiKeyChange() {
+  if (apiKey.value) {
+    localStorage.setItem('gemini_api_key', apiKey.value)
+    showSuccess('API Key Updated', 'Your API key has been saved successfully')
+  }
+}
+
+async function testApiKey() {
+  if (!apiKey.value) {
+    showError('API Key Required', 'Please enter an API key first')
+    return
+  }
+
+  testingApiKey.value = true
+  
+  try {
+    // Test the API key with a simple request
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey.value}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: 'Hello' }] }],
+          generationConfig: { maxOutputTokens: 10 }
+        })
+      }
+    )
+
+    if (response.ok) {
+      showSuccess('API Key Valid', 'Your API key is working correctly!')
+    } else {
+      const error = await response.json()
+      showError('API Key Invalid', error.error?.message || 'Invalid API key')
+    }
+  } catch (error) {
+    showError('Connection Error', 'Failed to test API key. Please check your internet connection.')
+  } finally {
+    testingApiKey.value = false
+  }
+}
+
+function clearApiKey() {
+  apiKey.value = ''
+  localStorage.removeItem('gemini_api_key')
+  showSuccess('API Key Cleared', 'Your API key has been removed')
+}
+
 // Handle reset to defaults
 function handleReset() {
   settingsStore.resetToDefaults()
@@ -275,6 +359,10 @@ function handleReset() {
 
 .settings-section:last-of-type {
   margin-bottom: 24px;
+}
+
+.api-key-help {
+  margin-top: 8px;
 }
 
 .settings-actions {

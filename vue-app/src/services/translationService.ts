@@ -75,9 +75,20 @@ ${text}`
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
-        throw new Error(
-          errorData.error?.message || `API request failed with status ${response.status}`
-        )
+        const errorMessage = errorData.error?.message || `API request failed with status ${response.status}`
+        
+        // Check for quota exceeded error
+        if (errorMessage.includes('quota') || errorMessage.includes('Quota exceeded')) {
+          throw new Error(
+            'API quota exceeded. Please:\n' +
+            '1. Wait for quota to reset, or\n' +
+            '2. Get a new API key from https://aistudio.google.com/\n' +
+            '3. Set your new API key in Settings\n\n' +
+            'Original error: ' + errorMessage
+          )
+        }
+        
+        throw new Error(errorMessage)
       }
 
       const data: GeminiResponse = await response.json()
@@ -173,11 +184,11 @@ ${text}`
 
 // Composable for using the translation service
 export function useTranslationService() {
-  // In a real app, this would come from environment variables or user settings
-  const apiKey = 'AIzaSyBB5GrsVh8m6ls_6Q9n_JY4vtDELVgvZqI' // Replace with actual API key
+  // Try to get API key from localStorage first, then fallback to default
+  const apiKey = localStorage.getItem('gemini_api_key') || 'AIzaSyBMzwhvY4Zy40Lex0AgvktihhFdDvV5SaY'
 
   if (!apiKey || apiKey === 'YOUR_GEMINI_API_KEY_HERE') {
-    throw new Error('API key is not configured')
+    throw new Error('API key is not configured. Please set your API key in Settings.')
   }
 
   return new TranslationService(apiKey)

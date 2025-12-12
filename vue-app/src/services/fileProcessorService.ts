@@ -503,8 +503,8 @@ export class FileProcessorService implements IFileProcessorService {
 
 // Composable for using the file processor service
 export function useFileProcessorService() {
-  // In a real app, this would come from environment variables or user settings
-  const apiKey = 'AIzaSyBB5GrsVh8m6ls_6Q9n_JY4vtDELVgvZqI' // Replace with actual API key
+  // Try to get API key from localStorage first, then fallback to default
+  const apiKey = localStorage.getItem('gemini_api_key') || 'AIzaSyBMzwhvY4Zy40Lex0AgvktihhFdDvV5SaY'
 
   return new FileProcessorService(apiKey)
 }
